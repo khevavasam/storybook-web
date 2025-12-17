@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# storybook-web
 
-## Getting Started
+Multilingual kids stories (FI/EN/SV) with strict 1:1 translations, personal library, sharing links and PDF export.
 
-First, run the development server:
+## Tech
+Next.js (App Router), React, PostgreSQL, Prisma, NextAuth, Chakra UI, next-intl
 
+## Getting started
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open:
+```text
+http://localhost:3000
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Env
+Create `.env.local` (do not commit). Use `.env.example` as template.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Example:
+```env
+DATABASE_URL=
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+```
 
-## Learn More
+## Scripts
 
-To learn more about Next.js, take a look at the following resources:
+| Command          | Description                          |
+| ---------------- | ------------------------------------ |
+| `npm run dev`    | Run the development server           |
+| `npm run build`  | Build the application for production |
+| `npm run start`  | Start the production server          |
+| `npm run lint`   | Run the code linter                  |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## UI rules
+Chakra UI components first.  
+Custom feature components are allowed, built from Chakra components.  
+CSS Modules are allowed only for small extra styling when Chakra props/theme are not enough.  
+All user-facing text must come from next-intl JSON messages (no hardcoded strings).  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## MVP flow
+```text
+Auth -> Create story -> Translate same story -> Library -> Share -> PDF
+```
