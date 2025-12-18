@@ -1,0 +1,66 @@
+{
+  "Landing": {
+    "Header": {
+      "brand": "Storybook",
+      "pricing": "Pricing",
+      "signIn": "Sign in"
+    },
+    "Hero": {
+      "title": "Multilingual stories for kids",
+      "subtitle": "Create one story, translate it with strict 1:1 meaning, and share it with family.",
+      "primaryCta": "Get started",
+      "secondaryCta": "View pricing"
+    },
+    "Features": {
+      "title": "Why you’ll love it",
+      "items": {
+        "first": {
+          "title": "Strict 1:1 translations",
+          "description": "Keep the same story across languages—meaning stays aligned."
+        },
+        "second": {
+          "title": "Personal library",
+          "description": "Save your favorite stories and come back anytime."
+        },
+        "third": {
+          "title": "Share & export",
+          "description": "Send a link to family or export a PDF for bedtime reading."
+        }
+      }
+    },
+    "CTA": {
+      "title": "Ready to start your first story?",
+      "subtitle": "It takes only a few minutes to create and share.",
+      "button": "See plans"
+    },
+    "Footer": {
+      "copyright": "© {year} Storybook. All rights reserved."
+    },
+    "Pricing": {
+      "title": "Simple pricing",
+      "subtitle": "Choose a plan that fits your family.",
+      "plans": {
+        "starter": {
+          "name": "Starter",
+          "price": "$0",
+          "features": ["Create stories", "English only", "Share links"],
+          "button": "Start free"
+        },
+        "pro": {
+          "name": "Pro",
+          "price": "$9/mo",
+          "features": ["Multiple languages", "Library", "PDF export"],
+          "button": "Go Pro"
+        },
+        "family": {
+          "name": "Family",
+          "price": "$19/mo",
+          "features": ["Up to 5 profiles", "Sharing controls", "Priority support"],
+          "button": "Choose Family"
+        }
+      }
+    }
+  }
+}
+
+
