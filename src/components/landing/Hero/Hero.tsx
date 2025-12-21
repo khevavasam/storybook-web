@@ -1,28 +1,83 @@
 'use client'
 
-import { Button, Container, Heading, Stack, Text } from '@chakra-ui/react'
-import styles from './Hero.module.css'
+import React from 'react'
+import { useTranslations } from 'next-intl'
+import {
+  Box,
+  Button,
+  Container,
+  Flex,
+  Heading,
+  HStack,
+  Image,
+  Text,
+  VStack,
+} from '@chakra-ui/react'
 
-export function Hero() {
+export const Hero: React.FC = () => {
+  const t = useTranslations('Landing.Hero')
+
   return (
-    <Container as="section" maxW="6xl" className={styles.root}>
-      <Stack className={styles.inner} py={{ base: 10, md: 16 }} spacing={6} maxW="3xl">
-        <Heading size={{ base: '2xl', md: '3xl' }}>Multilingual stories for kids</Heading>
-        <Text fontSize={{ base: 'md', md: 'lg' }} color="fg.muted">
-          Create one story, translate it with strict 1:1 meaning, and share it with family.
-        </Text>
+    <Box
+      as="section"
+      bgGradient="radial(120% 120% at 0% 0%, #2A1245 0%, #14001F 60%)"
+      color="white"
+      py={{ base: 16, md: 24 }}
+      overflow="hidden"
+    >
+      <Container maxW="6xl">
+        <Flex
+          direction={{ base: 'column', md: 'row' }}
+          align="center"
+          gap={{ base: 12, md: 16 }}
+        >
+          {/* Left: text */}
+          <VStack align="start" gap={6} flex="1">
+            <Heading
+              as="h1"
+              size={{ base: '2xl', md: '3xl' }}
+              lineHeight="1.1"
+              maxW="xl"
+            >
+              {t('title')}
+            </Heading>
 
-        <Stack direction={{ base: 'column', sm: 'row' }} spacing={3}>
-          <Button as="a" href="#pricing" size="lg">
-            View pricing
-          </Button>
-          <Button as="a" href="#signin" size="lg" variant="outline">
-            Sign in
-          </Button>
-        </Stack>
-      </Stack>
-    </Container>
+            <Text
+              fontSize={{ base: 'md', md: 'lg' }}
+              opacity={0.9}
+              maxW="lg"
+            >
+              {t('subtitle')}
+            </Text>
+
+            <HStack gap={4} pt={2}>
+              <Button size="lg" variant="solid">
+                {t('primaryCta')}
+              </Button>
+
+              <Button size="lg" variant="outline">
+                {t('secondaryCta')}
+              </Button>
+            </HStack>
+          </VStack>
+
+          {/* Right: illustration */}
+          <Box
+            flex="1"
+            display={{ base: 'none', md: 'block' }}
+            textAlign="right"
+          >
+            <Image
+              src="/assets/hero-illustration.png"
+              alt={t('imageAlt')}
+              maxW="100%"
+              mx="auto"
+              pointerEvents="none"
+              userSelect="none"
+            />
+          </Box>
+        </Flex>
+      </Container>
+    </Box>
   )
 }
-
-
