@@ -80,6 +80,22 @@
           "cta": "Choose Family"
         }
       }
+    },
+    "Catalog": {
+      "title": "Bilingual story catalog",
+      "subtitle": "Pick a story and read it in FI / EN / SV with consistent 1:1 meaning.",
+      "filters": {
+        "all": "All languages"
+      },
+      "card": {
+        "minutes": "{minutes} min",
+        "open": "Open",
+        "placeholder": "Cover preview",
+        "defaultAlt": "Story cover"
+      },
+      "actions": {
+        "viewCatalog": "View catalog"
+      }
     }
   }
 }

@@ -1,7 +1,6 @@
 export { Header } from './Header/Header'
 export { Hero } from './Hero/Hero'
 export { Steps } from './Steps/Steps'
+export { Catalog } from './Catalog/Catalog'
 export { Pricing } from './Pricing/Pricing'
 export { Footer } from './Footer/Footer'
-
-

@@ -1,0 +1,114 @@
+'use client'
+
+import React, { useCallback, useMemo, useState } from 'react'
+import NextLink from 'next/link'
+import { useTranslations } from 'next-intl'
+import {
+  Box,
+  Button,
+  Container,
+  Flex,
+  Heading,
+  HStack,
+  Link as ChakraLink,
+  SimpleGrid,
+  Stack,
+  Text,
+} from '@chakra-ui/react'
+
+import { mockStories } from './mockStories'
+import { StoryCard } from './StoryCard'
+import type { StoryLanguage, StoryPreview } from './types'
+
+type LanguageFilter = 'ALL' | StoryLanguage
+
+export const Catalog: React.FC = () => {
+  const t = useTranslations('Landing.Catalog')
+  const [language, setLanguage] = useState<LanguageFilter>('ALL')
+
+  const stories: StoryPreview[] = mockStories
+
+  const filteredStories = useMemo(() => {
+    if (language === 'ALL') return stories
+    return stories.filter((s) => s.languages.includes(language))
+  }, [language, stories])
+
+  const languageOptions = useMemo(
+    () => [
+      { value: 'ALL' as const, label: t('filters.all') },
+      { value: 'FI' as const, label: 'FI' },
+      { value: 'EN' as const, label: 'EN' },
+      { value: 'SV' as const, label: 'SV' },
+    ],
+    [t]
+  )
+
+  const handleOpenStory = useCallback((id: string) => {
+    console.log('Open story:', id)
+  }, [])
+
+  return (
+    <Box as="section" id="catalog" py={{ base: 16, md: 24 }}>
+      <Container maxW="6xl">
+        <Stack gap={10}>
+          <Stack gap={3} textAlign="center">
+            <Heading as="h2" size="lg">
+              {t('title')}
+            </Heading>
+            <Text color="fg.muted" maxW="2xl" mx="auto">
+              {t('subtitle')}
+            </Text>
+          </Stack>
+
+          <Flex justify="center">
+            <HStack
+              gap={2}
+              borderWidth="1px"
+              borderRadius="full"
+              p={1}
+              overflowX="auto"
+            >
+              {languageOptions.map((opt) => {
+                const isActive = opt.value === language
+
+                return (
+                  <Button
+                    key={opt.value}
+                    size="sm"
+                    borderRadius="full"
+                    variant={isActive ? 'solid' : 'ghost'}
+                    onClick={() => setLanguage(opt.value)}
+                  >
+                    {opt.label}
+                  </Button>
+                )
+              })}
+            </HStack>
+          </Flex>
+
+          <SimpleGrid columns={{ base: 1, sm: 2, lg: 4 }} gap={6}>
+            {filteredStories.slice(0, 4).map((story) => (
+              <StoryCard
+                key={story.id}
+                story={story}
+                onOpen={handleOpenStory}
+              />
+            ))}
+          </SimpleGrid>
+
+          <Flex justify="center">
+            <ChakraLink
+              as={NextLink}
+              href="/catalog"
+              _hover={{ textDecoration: 'none' }}
+            >
+              <Button size="md" variant="solid">
+                {t('actions.viewCatalog')}
+              </Button>
+            </ChakraLink>
+          </Flex>
+        </Stack>
+      </Container>
+    </Box>
+  )
+}
