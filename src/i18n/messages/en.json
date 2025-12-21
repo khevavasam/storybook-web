@@ -20,6 +20,66 @@
       "primaryCta": "Start Reading",
       "secondaryCta": "Watch Demo",
       "imageAlt": "Reading illustration"
+    },
+    "Steps": {
+      "title": "How it works",
+      "subtitle": "Simple steps to create magical bilingual stories for your child.",
+      "steps": {
+        "choose": {
+          "title": "1. Choose",
+          "description": "Pick your language (FI / EN / SV), your child’s age and story type — bedtime or daytime."
+        },
+        "read": {
+          "title": "2. Read",
+          "description": "Get your story instantly. Translate it with one click — same hero, same plot."
+        },
+        "save": {
+          "title": "3. Save & Share",
+          "description": "Add stories to your library, download as PDF or share with family and friends."
+        }
+      }
+    },
+    "Pricing": {
+      "title": "Simple pricing",
+      "subtitle": "Choose a plan that fits your family.",
+      "badges": {
+        "free": "Free",
+        "popular": "Most popular",
+        "bestValue": "Best value"
+      },
+      "period": {
+        "free": "forever",
+        "month": "/ month"
+      },
+      "plans": {
+        "starter": {
+          "name": "Starter",
+          "features": [
+            "Create stories",
+            "One language",
+            "Share links"
+          ],
+          "cta": "Start free"
+        },
+        "pro": {
+          "name": "Pro",
+          "features": [
+            "Multiple languages",
+            "Personal library",
+            "PDF export"
+          ],
+          "cta": "Go Pro"
+        },
+        "family": {
+          "name": "Family",
+          "features": [
+            "Up to 5 profiles",
+            "Sharing controls",
+            "Priority support"
+          ],
+          "cta": "Choose Family"
+        }
+      }
     }
   }
 }
