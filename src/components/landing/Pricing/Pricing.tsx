@@ -77,19 +77,6 @@ export const Pricing: React.FC = () => {
               />
             ))}
           </SimpleGrid>
-
-          {/* Optional “enterprise/custom” block like in your UI-kit example */}
-          <Box borderWidth="1px" borderRadius="xl" p={6}>
-            <Stack gap={3}>
-              <Heading as="h3" size="md">
-                {t('custom.title')}
-              </Heading>
-              <Text color="fg.muted">{t('custom.description')}</Text>
-              <Button variant="outline" alignSelf={{ base: 'stretch', md: 'flex-start' }}>
-                {t('custom.cta')}
-              </Button>
-            </Stack>
-          </Box>
         </Stack>
       </Container>
     </Box>
