@@ -21,11 +21,34 @@ function writeCookie(next: ColorMode) {
   document.cookie = `${COOKIE_KEY}=${next}; Path=/; Max-Age=31536000; SameSite=Lax`
 }
  
- export function ColorModeProvider({ children }: PropsWithChildren) {
+ export function ColorModeProvider({
+  children,
+  initialColorMode = 'dark',
+}: PropsWithChildren<{ initialColorMode?: ColorMode }>) {
 
   const [colorMode, setColorModeState] = useState<ColorMode>(() => {
-    if (typeof window === 'undefined') return 'dark'
-    return 'dark'
+    // SSR: use the value picked in RootLayout (cookie-based)
+    if (typeof window === 'undefined') return initialColorMode
+
+    // If RootLayout/script already set it on <html>, prefer that to avoid a flash
+    const fromDom = document.documentElement.dataset.colorMode
+    if (fromDom === 'light' || fromDom === 'dark') return fromDom
+
+    try {
+      const stored = window.localStorage.getItem(STORAGE_KEY)
+      if (stored === 'light' || stored === 'dark') return stored
+    } catch (e) {}
+
+    // cookie fallback
+    try {
+      const match = document.cookie.match(
+        new RegExp(`(?:^|; )${COOKIE_KEY}=([^;]*)`),
+      )
+      const cookieValue = match ? decodeURIComponent(match[1]) : null
+      if (cookieValue === 'light' || cookieValue === 'dark') return cookieValue
+    } catch (e) {}
+
+    return initialColorMode
   })
  
    const setColorMode = useCallback((next: ColorMode) => {

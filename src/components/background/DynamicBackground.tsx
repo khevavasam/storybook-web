@@ -27,9 +27,9 @@ export function DynamicBackground() {
 
   const themeOptions = useMemo(() => {
     return {
-      backgroundColor: isDark ? 0x1e0a28 : 0xff7fb3,
-      color1: isDark ? 0xf0c27b : 0x246a4f,
-      color2: isDark ? 0xd8943b : 0xa8e6c7,
+      backgroundColor: isDark ? 0x1e0a28 : 0xfff6f0,
+      color1: isDark ? 0xf0c27b : 0xe83d6d,
+      color2: isDark ? 0xd8943b : 0xe83d6d,
       colorMode: 'varianceGradient',
     }
   }, [isDark])
@@ -93,7 +93,7 @@ export function DynamicBackground() {
         height: '100%',
         overflow: 'hidden',
         pointerEvents: 'none',
-        backgroundColor: isDark ? '#1e0a28' : '#ff7fb3',
+        backgroundColor: isDark ? '#1e0a28' : '#fff6f0',
       }}
     />
   )

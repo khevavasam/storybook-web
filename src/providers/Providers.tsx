@@ -8,7 +8,13 @@ import { system } from '@/theme/system'
 import messages from '@/i18n/messages/en.json'
 import { DynamicBackground } from '@/components/background/DynamicBackground'
 
-export function Providers({ children }: { children: ReactNode }) {
+export function Providers({
+  children,
+  initialColorMode,
+}: {
+  children: ReactNode
+  initialColorMode?: 'light' | 'dark'
+}) {
   return (
     <ChakraProvider value={system}>
       <NextIntlClientProvider
@@ -33,7 +39,7 @@ export function Providers({ children }: { children: ReactNode }) {
           namespace ? `${namespace}.${key}` : key
         }
       >
-        <ColorModeProvider>
+        <ColorModeProvider initialColorMode={initialColorMode}>
           <DynamicBackground />
           <Box position="relative" zIndex={1}>
             {children}

@@ -16,6 +16,7 @@ import {
 import { Moon, Sun } from '@phosphor-icons/react'
 
 import { useColorMode } from '@/theme/color-mode'
+import styles from './Header.module.css'
 
 interface HeaderProps {
   loginHref?: string
@@ -45,21 +46,11 @@ export const Header: React.FC<HeaderProps> = ({
   }, [toggleColorMode])
 
   return (
-    <Box
-      as="header"
-      position="sticky"
-      top={0}
-      zIndex="sticky"
-      bg="chakra-body-bg"
-    >
+    <Box as="header" position="sticky" top={0} zIndex="sticky" bg="transparent">
       <Container maxW="6xl" px={{ base: 4, md: 6 }} mx="auto">
-        <Flex align="center" py={4} gap={4}>
+        <Flex align="center" py={4} gap={4} className={styles.shell}>
           <Box flex="1" minW="fit-content">
-            <ChakraLink
-              as={NextLink}
-              href="/"
-              _hover={{ textDecoration: 'none' }}
-            >
+            <ChakraLink as={NextLink} href="/" _hover={{ textDecoration: 'none' }}>
               <Text fontSize="lg" fontWeight="700" lineHeight="1">
                 {t('logo')}
               </Text>
@@ -80,6 +71,7 @@ export const Header: React.FC<HeaderProps> = ({
                 fontSize="sm"
                 fontWeight="600"
                 opacity={0.9}
+                className={styles.navLink}
                 _hover={{ opacity: 1, textDecoration: 'none' }}
               >
                 {item.label}
@@ -87,15 +79,27 @@ export const Header: React.FC<HeaderProps> = ({
             ))}
           </HStack>
 
-          <HStack flex="1" justify="flex-end" gap={3}>
-            <ChakraLink as={NextLink} href={loginHref}>
-              <Button variant="outline" size="sm">
+          <HStack flex="1" justify="flex-end" gap={2}>
+            <ChakraLink as={NextLink} href={loginHref} _hover={{ textDecoration: 'none' }}>
+              <Button
+                variant="outline"
+                size="sm"
+                px={5}
+                minH={10}
+                borderRadius="full"
+              >
                 {t('actions.login')}
               </Button>
             </ChakraLink>
 
-            <ChakraLink as={NextLink} href={joinHref}>
-              <Button variant="solid" size="sm">
+            <ChakraLink as={NextLink} href={joinHref} _hover={{ textDecoration: 'none' }}>
+              <Button
+                variant="solid"
+                size="sm"
+                px={6}
+                minH={10}
+                borderRadius="full"
+              >
                 {t('actions.join')}
               </Button>
             </ChakraLink>
@@ -103,8 +107,11 @@ export const Header: React.FC<HeaderProps> = ({
             <IconButton
               aria-label={t('actions.toggleTheme')}
               onClick={handleToggleTheme}
-              variant="ghost"
+              variant="plain"
               size="sm"
+              minH={10}
+              minW={10}
+              borderRadius="full"
             >
               {isDark ? <Sun weight="bold" /> : <Moon weight="bold" />}
             </IconButton>
