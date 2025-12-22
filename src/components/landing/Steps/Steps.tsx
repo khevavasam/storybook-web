@@ -34,7 +34,7 @@ export const Steps: React.FC = () => {
 
   return (
     <Box as="section" id="how" py={{ base: 16, md: 24 }}>
-      <Container maxW="6xl">
+      <Container maxW="6xl" px={{ base: 4, md: 6 }} mx="auto">
         <Stack gap={10} align="center">
           {/* Title */}
           <Stack gap={3} textAlign="center" maxW="xl">
@@ -47,13 +47,22 @@ export const Steps: React.FC = () => {
           </Stack>
 
           {/* Steps */}
-          <SimpleGrid columns={{ base: 1, md: 3 }} gap={8} w="full">
+          <SimpleGrid
+            columns={{ base: 1, md: 3 }}
+            gap={8}
+            w="full"
+            maxW={{ base: '320px', md: '1100px' }}
+            mx="auto"
+            justifyItems="center"
+          >
             {steps.map((step, index) => (
               <Box
                 key={index}
                 p={6}
                 borderRadius="xl"
                 bg="chakra-subtle-bg"
+                w="full"
+                maxW="320px"
               >
                 <Stack gap={3}>
                   <Text fontSize="2xl">{step.icon}</Text>

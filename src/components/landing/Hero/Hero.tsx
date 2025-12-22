@@ -31,32 +31,30 @@ export const Hero: React.FC = () => {
       py={{ base: 16, md: 24 }}
       overflow="hidden"
     >
-      <Container maxW="6xl">
+      <Container maxW="6xl" px={{ base: 4, md: 6 }} mx="auto">
         <Flex
           direction={{ base: 'column', md: 'row' }}
           align="center"
-          gap={{ base: 12, md: 16 }}
+          justify="space-between"
+          gap={{ base: 10, md: 16 }}
         >
           {/* Left: text */}
-          <VStack align="start" gap={6} flex="1">
-            <Heading
-              as="h1"
-              size={{ base: '2xl', md: '3xl' }}
-              lineHeight="1.1"
-              maxW="xl"
-            >
+          <VStack
+            align={{ base: 'center', md: 'flex-start' }}
+            textAlign={{ base: 'center', md: 'left' }}
+            gap={6}
+            flex="1"
+            maxW={{ base: '2xl', md: 'xl' }}
+          >
+            <Heading as="h1" size={{ base: '2xl', md: '3xl' }} lineHeight="1.1">
               {t('title')}
             </Heading>
 
-            <Text
-              fontSize={{ base: 'md', md: 'lg' }}
-              opacity={isDark ? 0.9 : 0.85}
-              maxW="lg"
-            >
+            <Text fontSize={{ base: 'md', md: 'lg' }} opacity={isDark ? 0.9 : 0.85}>
               {t('subtitle')}
             </Text>
 
-            <HStack gap={4} pt={2}>
+            <HStack gap={4} pt={2} justify={{ base: 'center', md: 'flex-start' }} flexWrap="wrap">
               <Button size="lg" variant="solid">
                 {t('primaryCta')}
               </Button>
@@ -68,16 +66,13 @@ export const Hero: React.FC = () => {
           </VStack>
 
           {/* Right: illustration */}
-          <Box
-            flex="1"
-            display={{ base: 'none', md: 'block' }}
-            textAlign="right"
-          >
+          <Box flex="1" display={{ base: 'none', md: 'block' }} textAlign="right">
             <Image
               src="/assets/hero-illustration.png"
               alt={t('imageAlt')}
-              maxW="100%"
-              mx="auto"
+              maxW="520px"
+              w="100%"
+              ms="auto"
               pointerEvents="none"
               userSelect="none"
             />

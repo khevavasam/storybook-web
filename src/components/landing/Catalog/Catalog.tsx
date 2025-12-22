@@ -49,7 +49,7 @@ export const Catalog: React.FC = () => {
 
   return (
     <Box as="section" id="catalog" py={{ base: 16, md: 24 }}>
-      <Container maxW="6xl">
+      <Container maxW="6xl" px={{ base: 4, md: 6 }} mx="auto">
         <Stack gap={10}>
           <Stack gap={3} textAlign="center">
             <Heading as="h2" size="lg">
@@ -86,13 +86,18 @@ export const Catalog: React.FC = () => {
             </HStack>
           </Flex>
 
-          <SimpleGrid columns={{ base: 1, sm: 2, lg: 4 }} gap={6}>
+          <SimpleGrid
+            columns={{ base: 1, sm: 2, lg: 4 }}
+            gap={6}
+            w="full"
+            maxW={{ base: '320px', sm: '700px', lg: '1400px' }}
+            mx="auto"
+            justifyItems="center"
+          >
             {filteredStories.slice(0, 4).map((story) => (
-              <StoryCard
-                key={story.id}
-                story={story}
-                onOpen={handleOpenStory}
-              />
+              <Box key={story.id} w="full" maxW="320px">
+                <StoryCard story={story} onOpen={handleOpenStory} />
+              </Box>
             ))}
           </SimpleGrid>
 

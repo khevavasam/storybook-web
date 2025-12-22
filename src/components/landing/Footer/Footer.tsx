@@ -11,7 +11,7 @@ export function Footer() {
       borderTop="1px solid"
       borderColor="border.muted"
     >
-      <Container maxW="6xl">
+      <Container maxW="6xl" px={{ base: 4, md: 6 }} mx="auto">
         <Text
           fontSize="sm"
           color="fg.muted"

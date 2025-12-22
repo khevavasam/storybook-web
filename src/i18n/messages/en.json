@@ -51,31 +51,37 @@
         "free": "forever",
         "month": "/ month"
       },
+      "stats": {
+        "label": "stories / month"
+      },
       "plans": {
         "starter": {
           "name": "Starter",
+          "subPriceText": "Try it free — no credit card needed.",
           "features": [
-            "Create stories",
-            "One language",
-            "Share links"
+            { "id": "createStories", "label": "Create stories", "included": true },
+            { "id": "oneLanguage", "label": "One language", "included": true },
+            { "id": "shareLinks", "label": "Share links", "included": true }
           ],
           "cta": "Start free"
         },
         "pro": {
           "name": "Pro",
+          "subPriceText": "Unlock multilingual reading for your child.",
           "features": [
-            "Multiple languages",
-            "Personal library",
-            "PDF export"
+            { "id": "multipleLanguages", "label": "Multiple languages", "included": true },
+            { "id": "personalLibrary", "label": "Personal library", "included": true },
+            { "id": "pdfExport", "label": "PDF export", "included": true }
           ],
           "cta": "Go Pro"
         },
         "family": {
           "name": "Family",
+          "subPriceText": "Best for families with multiple kids.",
           "features": [
-            "Up to 5 profiles",
-            "Sharing controls",
-            "Priority support"
+            { "id": "profiles", "label": "Up to 5 profiles", "included": true },
+            { "id": "sharingControls", "label": "Sharing controls", "included": true },
+            { "id": "prioritySupport", "label": "Priority support", "included": true }
           ],
           "cta": "Choose Family"
         }

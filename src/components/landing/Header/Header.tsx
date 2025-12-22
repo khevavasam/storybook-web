@@ -52,7 +52,7 @@ export const Header: React.FC<HeaderProps> = ({
       zIndex="sticky"
       bg="chakra-body-bg"
     >
-      <Container maxW="6xl" px={{ base: 4, md: 6 }}>
+      <Container maxW="6xl" px={{ base: 4, md: 6 }} mx="auto">
         <Flex align="center" py={4} gap={4}>
           <Box flex="1" minW="fit-content">
             <ChakraLink

@@ -11,7 +11,28 @@ import { DynamicBackground } from '@/components/background/DynamicBackground'
 export function Providers({ children }: { children: ReactNode }) {
   return (
     <ChakraProvider value={system}>
-      <NextIntlClientProvider locale="en" messages={messages}>
+      <NextIntlClientProvider
+        locale="en"
+        messages={messages}
+        onError={(error) => {
+          // Avoid hard-crashing the app in dev for missing translations.
+          // Missing keys are still visible via `getMessageFallback`.
+          if (
+            error &&
+            typeof error === 'object' &&
+            'code' in error &&
+            (error as { code?: unknown }).code === 'MISSING_MESSAGE'
+          ) {
+            return
+          }
+
+          // eslint-disable-next-line no-console
+          console.error(error)
+        }}
+        getMessageFallback={({ namespace, key }) =>
+          namespace ? `${namespace}.${key}` : key
+        }
+      >
         <ColorModeProvider>
           <DynamicBackground />
           <Box position="relative" zIndex={1}>
