@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { useTranslations } from 'next-intl'
+import { useColorMode } from '@/theme/color-mode'
 import {
   Box,
   Button,
@@ -16,12 +17,17 @@ import {
 
 export const Hero: React.FC = () => {
   const t = useTranslations('Landing.Hero')
+  const { colorMode } = useColorMode()
+  const isDark = colorMode === 'dark'
 
   return (
     <Box
       as="section"
-      bgGradient="radial(120% 120% at 0% 0%, #2A1245 0%, #14001F 60%)"
-      color="white"
+      // В light теме не задаём тёмный градиент и белый текст — иначе не читается.
+      bgGradient={
+        isDark ? 'radial(120% 120% at 0% 0%, #2A1245 0%, #14001F 60%)' : undefined
+      }
+      color={isDark ? 'white' : 'gray.900'}
       py={{ base: 16, md: 24 }}
       overflow="hidden"
     >
@@ -44,7 +50,7 @@ export const Hero: React.FC = () => {
 
             <Text
               fontSize={{ base: 'md', md: 'lg' }}
-              opacity={0.9}
+              opacity={isDark ? 0.9 : 0.85}
               maxW="lg"
             >
               {t('subtitle')}
