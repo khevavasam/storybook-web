@@ -1,4 +1,56 @@
-.root {}
-.inner {}
+.card {
+  --card-border: rgba(0, 0, 0, 0.06);
+  --card-bg-start: rgba(255, 255, 255, 0.95);
+  --card-bg-end: rgba(245, 247, 255, 0.95);
+  --card-shadow: 0 1.25rem 3rem rgba(16, 24, 40, 0.12);
+  --card-shadow-hover: 0 2rem 5rem rgba(16, 24, 40, 0.16);
+  --card-overlay: rgba(255, 255, 255, 0.35);
 
+  position: relative;
+  border-radius: 2rem;
+  border: 1px solid var(--card-border);
 
+  background: linear-gradient(
+    180deg,
+    var(--card-bg-start),
+    var(--card-bg-end)
+  );
+
+  box-shadow: var(--card-shadow);
+
+  transition:
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card:hover {
+  transform: translateY(-0.35rem);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--card-overlay);
+  pointer-events: none;
+}
+
+:global(html[data-color-mode='dark']) .card {
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-bg-start: rgba(40, 18, 69, 0.98);
+  --card-bg-end: rgba(28, 12, 50, 0.98);
+  --card-shadow: 0 1.25rem 3rem rgba(0, 0, 0, 0.35);
+  --card-shadow-hover: 0 2rem 5rem rgba(0, 0, 0, 0.45);
+  --card-overlay: rgba(0, 0, 0, 0.12);
+}
+
+.icon {
+  transition:
+    transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card:hover .icon {
+  transform: translateY(-0.5rem);
+}
