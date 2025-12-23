@@ -25,7 +25,11 @@ export const Hero: React.FC = () => {
     <Box
       as="section"
       className={styles.root}
-      py={{ base: 16, md: 24 }}
+      pt={{
+        base: 'calc(88px + 24px)',
+        md: 'calc(88px + 40px)',
+      }}
+      pb={{ base: 16, md: 24 }}
     >
       <Container maxW="6xl" px={{ base: 4, md: 6 }} mx="auto">
         <Flex

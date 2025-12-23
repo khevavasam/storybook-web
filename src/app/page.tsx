@@ -1,4 +1,4 @@
-import { Footer, Header, Hero, Steps, Catalog, Pricing } from '@/components/landing'
+import { Footer, Header, Hero, Steps, Catalog, Pricing, Reviews } from '@/components/landing'
 
 export default function Home() {
   return (
@@ -8,6 +8,7 @@ export default function Home() {
       <Steps />
       <Catalog />
       <Pricing />
+      <Reviews />
       <Footer />
     </>
   )

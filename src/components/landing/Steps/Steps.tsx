@@ -35,7 +35,12 @@ export const Steps: React.FC = () => {
   ]
 
   return (
-    <Box as="section" id="how" py={{ base: 16, md: 24 }}>
+    <Box
+      as="section"
+      id="how"
+      py={{ base: 16, md: 24 }}
+      scrollMarginTop="88px"
+    >
       <Container maxW="6xl" px={{ base: 4, md: 6 }} mx="auto">
         <Stack gap={10} align="center">
           <Stack gap={3} textAlign="center" maxW="xl">

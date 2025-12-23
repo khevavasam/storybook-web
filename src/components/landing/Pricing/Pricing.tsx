@@ -56,7 +56,12 @@ export const Pricing: React.FC = () => {
   const [selectedPlanId, setSelectedPlanId] = React.useState<string>(plans[1]?.id ?? plans[0]!.id)
 
   return (
-    <Box as="section" id="pricing" py={{ base: 16, md: 24 }}>
+    <Box
+      as="section"
+      id="pricing"
+      py={{ base: 16, md: 24 }}
+      scrollMarginTop="88px"
+    >
       <Container maxW="6xl" px={{ base: 4, md: 6 }} mx="auto">
         <Stack gap={10}>
           <Stack gap={3} maxW="lg" textAlign="center" mx="auto">
@@ -74,24 +79,26 @@ export const Pricing: React.FC = () => {
             </Text>
           </Stack>
 
-          <SimpleGrid
-            columns={{ base: 1, md: 3 }}
-            gap={6}
-            w="full"
-            maxW={{ base: '360px', md: '1200px' }}
-            mx="auto"
-            justifyItems="center"
-          >
-            {plans.map((plan) => (
-              <Box key={plan.id} w="full" maxW="360px">
-                <PlanCard
-                  plan={plan}
-                  selected={selectedPlanId === plan.id}
-                  onSelect={setSelectedPlanId}
-                />
-              </Box>
-            ))}
-          </SimpleGrid>
+          <Box id="pricing-plans" scrollMarginTop="88px">
+            <SimpleGrid
+              columns={{ base: 1, md: 3 }}
+              gap={6}
+              w="full"
+              maxW={{ base: '360px', md: '1200px' }}
+              mx="auto"
+              justifyItems="center"
+            >
+              {plans.map((plan) => (
+                <Box key={plan.id} w="full" maxW="360px">
+                  <PlanCard
+                    plan={plan}
+                    selected={selectedPlanId === plan.id}
+                    onSelect={setSelectedPlanId}
+                  />
+                </Box>
+              ))}
+            </SimpleGrid>
+          </Box>
         </Stack>
       </Container>
     </Box>

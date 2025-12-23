@@ -49,7 +49,12 @@ export const Catalog: React.FC = () => {
   }, [])
 
   return (
-    <Box as="section" id="catalog" py={{ base: 16, md: 24 }}>
+    <Box
+      as="section"
+      id="catalog"
+      py={{ base: 16, md: 24 }}
+      scrollMarginTop="88px"
+    >
       <Container maxW="6xl" px={{ base: 4, md: 6 }} mx="auto" className={styles.shell}>
         <Stack gap={10}>
           <Stack gap={3} textAlign="center">
@@ -93,20 +98,22 @@ export const Catalog: React.FC = () => {
             </HStack>
           </Flex>
 
-          <SimpleGrid
-            columns={{ base: 1, sm: 2, lg: 4 }}
-            gap={6}
-            w="full"
-            maxW={{ base: '320px', sm: '700px', lg: '1400px' }}
-            mx="auto"
-            justifyItems="center"
-          >
-            {filteredStories.slice(0, 4).map((story) => (
-              <Box key={story.id} w="full" maxW="320px">
-                <StoryCard story={story} onOpen={handleOpenStory} />
-              </Box>
-            ))}
-          </SimpleGrid>
+          <Box id="catalog-cards" scrollMarginTop="88px">
+            <SimpleGrid
+              columns={{ base: 1, sm: 2, lg: 4 }}
+              gap={6}
+              w="full"
+              maxW={{ base: '320px', sm: '700px', lg: '1400px' }}
+              mx="auto"
+              justifyItems="center"
+            >
+              {filteredStories.slice(0, 4).map((story) => (
+                <Box key={story.id} w="full" maxW="320px">
+                  <StoryCard story={story} onOpen={handleOpenStory} />
+                </Box>
+              ))}
+            </SimpleGrid>
+          </Box>
 
           <Flex justify="center">
             <ChakraLink

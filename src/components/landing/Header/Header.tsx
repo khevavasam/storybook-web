@@ -33,9 +33,9 @@ export const Header: React.FC<HeaderProps> = ({
 
   const navItems = useMemo(
     () => [
-      { href: '#catalog', label: t('nav.catalog') },
       { href: '#how', label: t('nav.howItWorks') },
-      { href: '#pricing', label: t('nav.pricing') },
+      { href: '#catalog-cards', label: t('nav.catalog') },
+      { href: '#pricing-plans', label: t('nav.pricing') },
       { href: '#reviews', label: t('nav.reviews') },
     ],
     [t]
@@ -46,7 +46,16 @@ export const Header: React.FC<HeaderProps> = ({
   }, [toggleColorMode])
 
   return (
-    <Box as="header" position="sticky" top={0} zIndex="sticky" bg="transparent">
+    <Box
+      as="header"
+      position="fixed"
+      top={0}
+      left={0}
+      right={0}
+      w="full"
+      zIndex="sticky"
+      bg="transparent"
+    >
       <Container maxW="6xl" px={{ base: 4, md: 6 }} mx="auto">
         <Flex align="center" py={4} gap={4} className={styles.shell}>
           <Box flex="1" minW="fit-content">
