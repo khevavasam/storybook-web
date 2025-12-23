@@ -15,4 +15,5 @@ export type Plan = {
     rps: number
     features: PlanFeature[]
     cta: string
+    highlighted?: boolean
 }

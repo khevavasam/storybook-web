@@ -1,0 +1,85 @@
+.card {
+  position: relative;
+
+  --plan-bg: var(--chakra-colors-chakra-body-bg);
+  --plan-bg-selected: var(--chakra-colors-bg-subtle);
+
+  --plan-border: var(--chakra-colors-border);
+  --plan-border-strong: var(--chakra-colors-border-emphasized);
+
+  --plan-shadow: var(--chakra-shadows-sm);
+  --plan-shadow-hover: var(--chakra-shadows-lg);
+
+  --plan-accent: var(--chakra-colors-primary-default);
+
+  background: var(--plan-bg);
+  border-color: var(--plan-border);
+  box-shadow: var(--plan-shadow);
+
+  transition:
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 260ms ease,
+    background-color 260ms ease;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: -0.125rem;
+  border-radius: inherit;
+  pointer-events: none;
+
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--plan-accent) 90%, transparent),
+    transparent 55%,
+    color-mix(in oklab, var(--plan-accent) 70%, transparent)
+  );
+  opacity: 0;
+  filter: blur(0.35rem);
+  transition: opacity 320ms ease;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 0.22rem;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  pointer-events: none;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--plan-accent),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 320ms ease;
+}
+
+.card:hover {
+  transform: translateY(-0.25rem);
+  box-shadow: var(--plan-shadow-hover);
+}
+
+.card[data-selected='true'] {
+  background: var(--plan-bg-selected);
+  border-color: var(--plan-border-strong);
+}
+
+.card[data-selected='true']::before {
+  opacity: 0.45;
+}
+
+.card[data-selected='true']::after {
+  opacity: 0.55;
+}
+
+.badge {
+  border: 1px solid color-mix(in oklab, var(--plan-accent) 28%, transparent);
+}

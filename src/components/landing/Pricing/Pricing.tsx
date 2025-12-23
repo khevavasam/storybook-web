@@ -4,7 +4,6 @@ import React from 'react'
 import { useTranslations } from 'next-intl'
 import {
   Box,
-  Button,
   Container,
   Heading,
   SimpleGrid,
@@ -61,10 +60,18 @@ export const Pricing: React.FC = () => {
       <Container maxW="6xl" px={{ base: 4, md: 6 }} mx="auto">
         <Stack gap={10}>
           <Stack gap={3} maxW="lg" textAlign="center" mx="auto">
-            <Heading as="h2" size="lg">
+            <Heading
+              as="h2"
+              size={{ base: '2xl', md: '3xl' }}
+              lineHeight="1.05"
+              letterSpacing="-0.02em"
+              color="primary.default"
+            >
               {t('title')}
             </Heading>
-            <Text color="fg.muted">{t('subtitle')}</Text>
+            <Text fontSize={{ base: 'md', md: 'lg' }} color="fg.muted">
+              {t('subtitle')}
+            </Text>
           </Stack>
 
           <SimpleGrid
