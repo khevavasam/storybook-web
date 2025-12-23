@@ -14,6 +14,7 @@ import {
 import { useTranslations } from 'next-intl'
 
 import type { StoryLanguage, StoryPreview } from './types'
+import styles from './StoryCard.module.css'
 
 export interface StoryCardProps {
   story: StoryPreview
@@ -35,19 +36,20 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story, onOpen }) => {
       borderRadius="2xl"
       overflow="hidden"
       bg="chakra-body-bg"
-      transition="transform 180ms ease"
-      _hover={{ transform: 'translateY(-2px)' }}
+      className={styles.card}
     >
       <Box p={4}>
         <Flex justify="space-between" align="center" mb={3}>
           <Box
+            px={3}
+            py={1}
             borderWidth="1px"
             borderRadius="full"
-            px={2}
-            py={1}
             fontSize="xs"
             fontWeight="700"
-            opacity={0.95}
+            lineHeight="1"
+            letterSpacing="0.02em"
+            className={styles.ageBadge}
           >
             {story.ageLabel}
           </Box>
@@ -88,12 +90,7 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story, onOpen }) => {
           <Text
             fontSize="sm"
             color="fg.muted"
-            overflow="hidden"
-            style={{
-              display: '-webkit-box',
-              WebkitLineClamp: 2,
-              WebkitBoxOrient: 'vertical',
-            }}
+            className={styles.subtitleClamp}
           >
             {story.subtitle}
           </Text>
@@ -116,7 +113,14 @@ export const StoryCard: React.FC<StoryCardProps> = ({ story, onOpen }) => {
               ))}
             </HStack>
 
-            <Button size="sm" variant="outline" onClick={handleOpen}>
+            <Button
+              size="sm"
+              variant="outline"
+              px={5}
+              minH={10}
+              borderRadius="full"
+              onClick={handleOpen}
+            >
               {t('card.open')}
             </Button>
           </Flex>

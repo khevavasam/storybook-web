@@ -19,6 +19,7 @@ import {
 import { mockStories } from './mockStories'
 import { StoryCard } from './StoryCard'
 import type { StoryLanguage, StoryPreview } from './types'
+import styles from './Catalog.module.css'
 
 type LanguageFilter = 'ALL' | StoryLanguage
 
@@ -49,13 +50,19 @@ export const Catalog: React.FC = () => {
 
   return (
     <Box as="section" id="catalog" py={{ base: 16, md: 24 }}>
-      <Container maxW="6xl" px={{ base: 4, md: 6 }} mx="auto">
+      <Container maxW="6xl" px={{ base: 4, md: 6 }} mx="auto" className={styles.shell}>
         <Stack gap={10}>
           <Stack gap={3} textAlign="center">
-            <Heading as="h2" size="lg">
+            <Heading
+              as="h2"
+              size={{ base: '2xl', md: '3xl' }}
+              lineHeight="1.05"
+              letterSpacing="-0.02em"
+              color="primary.default"
+            >
               {t('title')}
             </Heading>
-            <Text color="fg.muted" maxW="2xl" mx="auto">
+            <Text fontSize={{ base: 'md', md: 'lg' }} color="fg.muted" maxW="2xl" mx="auto">
               {t('subtitle')}
             </Text>
           </Stack>
@@ -107,7 +114,14 @@ export const Catalog: React.FC = () => {
               href="/catalog"
               _hover={{ textDecoration: 'none' }}
             >
-              <Button size="md" variant="solid">
+              <Button
+                size="lg"
+                variant="solid"
+                borderRadius="full"
+                px={7}
+                minH={12}
+                className={styles.cta}
+              >
                 {t('actions.viewCatalog')}
               </Button>
             </ChakraLink>
