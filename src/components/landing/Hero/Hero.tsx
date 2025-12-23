@@ -1,8 +1,8 @@
 'use client'
 
 import React from 'react'
+import NextImage from 'next/image'
 import { useTranslations } from 'next-intl'
-import { useColorMode } from '@/theme/color-mode'
 import {
   Box,
   Button,
@@ -10,26 +10,22 @@ import {
   Flex,
   Heading,
   HStack,
-  Image,
   Text,
   VStack,
 } from '@chakra-ui/react'
+import styles from './Hero.module.css'
+
+import heroDark from '../../../../public/hero/hero-dark.png'
+import heroLight from '../../../../public/hero/hero-light.png'
 
 export const Hero: React.FC = () => {
   const t = useTranslations('Landing.Hero')
-  const { colorMode } = useColorMode()
-  const isDark = colorMode === 'dark'
 
   return (
     <Box
       as="section"
-      // В light теме не задаём тёмный градиент и белый текст — иначе не читается.
-      bgGradient={
-        isDark ? 'radial(120% 120% at 0% 0%, #2A1245 0%, #14001F 60%)' : undefined
-      }
-      color={isDark ? 'white' : 'gray.900'}
+      className={styles.root}
       py={{ base: 16, md: 24 }}
-      overflow="hidden"
     >
       <Container maxW="6xl" px={{ base: 4, md: 6 }} mx="auto">
         <Flex
@@ -46,36 +42,62 @@ export const Hero: React.FC = () => {
             flex="1"
             maxW={{ base: '2xl', md: 'xl' }}
           >
-            <Heading as="h1" size={{ base: '2xl', md: '3xl' }} lineHeight="1.1">
+            <Heading
+              as="h1"
+              size={{ base: '2xl', md: '3xl' }}
+              lineHeight="1.05"
+              letterSpacing="-0.02em"
+              color="primary.default"
+            >
               {t('title')}
             </Heading>
 
-            <Text fontSize={{ base: 'md', md: 'lg' }} opacity={isDark ? 0.9 : 0.85}>
+            <Text fontSize={{ base: 'md', md: 'lg' }} color="fg.muted">
               {t('subtitle')}
             </Text>
 
             <HStack gap={4} pt={2} justify={{ base: 'center', md: 'flex-start' }} flexWrap="wrap">
-              <Button size="lg" variant="solid">
+              <Button size="lg" variant="solid" borderRadius="full" px={7} minH={12}>
                 {t('primaryCta')}
               </Button>
 
-              <Button size="lg" variant="outline">
+              <Button size="lg" variant="outline" borderRadius="full" px={7} minH={12}>
                 {t('secondaryCta')}
               </Button>
             </HStack>
           </VStack>
 
           {/* Right: illustration */}
-          <Box flex="1" display={{ base: 'none', md: 'block' }} textAlign="right">
-            <Image
-              src="/assets/hero-illustration.png"
-              alt={t('imageAlt')}
-              maxW="520px"
-              w="100%"
-              ms="auto"
+          <Box
+            flex="1"
+            w="full"
+            mt={{ base: 10, md: 0 }}
+            display={{ base: 'block', md: 'block' }}
+            textAlign={{ base: 'center', md: 'right' }}
+          >
+            <Box
+              className={styles.illustration}
+              style={{ aspectRatio: `${heroDark.width} / ${heroDark.height}` }}
               pointerEvents="none"
               userSelect="none"
-            />
+            >
+              <NextImage
+                src={heroLight}
+                alt={t('imageAlt')}
+                fill
+                priority
+                sizes="(max-width: 900px) 70vw, (max-width: 1100px) 340px, 400px"
+                className={`${styles.image} ${styles.light}`}
+              />
+              <NextImage
+                src={heroDark}
+                alt={t('imageAlt')}
+                fill
+                priority
+                sizes="(max-width: 900px) 70vw, (max-width: 1100px) 340px, 400px"
+                className={`${styles.image} ${styles.dark}`}
+              />
+            </Box>
           </Box>
         </Flex>
       </Container>

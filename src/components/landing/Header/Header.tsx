@@ -51,7 +51,13 @@ export const Header: React.FC<HeaderProps> = ({
         <Flex align="center" py={4} gap={4} className={styles.shell}>
           <Box flex="1" minW="fit-content">
             <ChakraLink as={NextLink} href="/" _hover={{ textDecoration: 'none' }}>
-              <Text fontSize="lg" fontWeight="700" lineHeight="1">
+              <Text
+                fontSize={{ base: 'lg', md: 'xl' }}
+                fontWeight="800"
+                lineHeight="1"
+                letterSpacing="-0.02em"
+                color="button.solid.bg"
+              >
                 {t('logo')}
               </Text>
             </ChakraLink>
