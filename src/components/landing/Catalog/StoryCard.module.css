@@ -1,0 +1,66 @@
+.card {
+  position: relative;
+
+  --card-shadow: var(--chakra-shadows-md);
+  --card-shadow-hover: var(--chakra-shadows-xl);
+
+  --age-bg: var(--chakra-colors-bg-subtle);
+  --age-fg: var(--chakra-colors-fg);
+  --age-border: var(--chakra-colors-border);
+  --age-border-strong: var(--chakra-colors-border-emphasized);
+
+  box-shadow: var(--card-shadow);
+
+  transition:
+    transform 360ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card:hover {
+  transform: translateY(-0.35rem);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.ageBadge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+
+  background: var(--age-bg);
+  color: var(--age-fg);
+  border-color: var(--age-border);
+
+  transition:
+    transform 200ms ease,
+    border-color 200ms ease,
+    background-color 200ms ease;
+}
+
+.ageBadge::before {
+  content: "";
+  position: absolute;
+  inset: -0.125rem;
+  border-radius: inherit;
+  pointer-events: none;
+
+  background: radial-gradient(
+    120% 180% at 20% 20%,
+    var(--age-border-strong) 0%,
+    transparent 60%
+  );
+  opacity: 0.55;
+  filter: blur(0.25rem);
+}
+
+.card:hover .ageBadge {
+  transform: translateY(-0.05rem);
+  border-color: var(--age-border-strong);
+}
+
+.subtitleClamp {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}

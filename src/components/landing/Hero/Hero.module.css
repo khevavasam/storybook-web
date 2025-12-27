@@ -1,4 +1,37 @@
-.root {}
-.inner {}
+.hero {
+  overflow: hidden;
+}
 
+:global(html[data-color-mode='dark']) .hero {
+  background: radial-gradient(120% 120% at 0% 0%, #2A1245 0%, #14001F 60%);
+}
 
+.illustration {
+  position: relative;
+  max-width: 26rem;
+  margin-left: auto;
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+
+:global(html[data-color-mode='light']) .illustration {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+:global(html[data-color-mode='dark']) .illustration {
+  background: rgba(20, 0, 31, 0.35);
+}
+
+.image {
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+:global(html[data-color-mode='light']) .light {
+  opacity: 1;
+}
+
+:global(html[data-color-mode='dark']) .dark {
+  opacity: 1;
+}

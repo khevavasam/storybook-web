@@ -1,66 +1,107 @@
 {
   "Landing": {
     "Header": {
-      "brand": "Storybook",
-      "pricing": "Pricing",
-      "signIn": "Sign in"
-    },
-    "Hero": {
-      "title": "Multilingual stories for kids",
-      "subtitle": "Create one story, translate it with strict 1:1 meaning, and share it with family.",
-      "primaryCta": "Get started",
-      "secondaryCta": "View pricing"
-    },
-    "Features": {
-      "title": "Why you’ll love it",
-      "items": {
-        "first": {
-          "title": "Strict 1:1 translations",
-          "description": "Keep the same story across languages—meaning stays aligned."
-        },
-        "second": {
-          "title": "Personal library",
-          "description": "Save your favorite stories and come back anytime."
-        },
-        "third": {
-          "title": "Share & export",
-          "description": "Send a link to family or export a PDF for bedtime reading."
-        }
+      "logo": "Stories",
+      "nav": {
+        "catalog": "Catalog",
+        "howItWorks": "How it works",
+        "pricing": "Pricing",
+        "reviews": "Reviews"
+      },
+      "actions": {
+        "login": "Log in",
+        "join": "Join for free",
+        "toggleTheme": "Toggle theme"
       }
     },
-    "CTA": {
-      "title": "Ready to start your first story?",
-      "subtitle": "It takes only a few minutes to create and share.",
-      "button": "See plans"
+    "Hero": {
+      "title": "One Hero. Three Languages.",
+      "subtitle": "Discover bilingual bedtime stories for children 3+. Read the same tale in Finnish, English, or Swedish — with one hero and one adventure.",
+      "primaryCta": "Start Reading",
+      "secondaryCta": "Watch Demo",
+      "imageAlt": "Reading illustration"
     },
-    "Footer": {
-      "copyright": "© {year} Storybook. All rights reserved."
+    "Steps": {
+      "title": "How it works",
+      "subtitle": "Simple steps to create magical bilingual stories for your child.",
+      "steps": {
+        "choose": {
+          "title": "1. Choose",
+          "description": "Pick your language (FI / EN / SV), your child’s age and story type — bedtime or daytime."
+        },
+        "read": {
+          "title": "2. Read",
+          "description": "Get your story instantly. Translate it with one click — same hero, same plot."
+        },
+        "save": {
+          "title": "3. Save & Share",
+          "description": "Add stories to your library, download as PDF or share with family and friends."
+        }
+      }
     },
     "Pricing": {
       "title": "Simple pricing",
       "subtitle": "Choose a plan that fits your family.",
+      "badges": {
+        "free": "Free",
+        "popular": "Most popular",
+        "bestValue": "Best value"
+      },
+      "period": {
+        "free": "forever",
+        "month": "/ month"
+      },
+      "stats": {
+        "label": "stories / month"
+      },
       "plans": {
         "starter": {
           "name": "Starter",
-          "price": "$0",
-          "features": ["Create stories", "English only", "Share links"],
-          "button": "Start free"
+          "subPriceText": "Try it free — no credit card needed.",
+          "features": [
+            { "id": "createStories", "label": "Create stories", "included": true },
+            { "id": "oneLanguage", "label": "One language", "included": true },
+            { "id": "shareLinks", "label": "Share links", "included": true }
+          ],
+          "cta": "Start free"
         },
         "pro": {
           "name": "Pro",
-          "price": "$9/mo",
-          "features": ["Multiple languages", "Library", "PDF export"],
-          "button": "Go Pro"
+          "subPriceText": "Unlock multilingual reading for your child.",
+          "features": [
+            { "id": "multipleLanguages", "label": "Multiple languages", "included": true },
+            { "id": "personalLibrary", "label": "Personal library", "included": true },
+            { "id": "pdfExport", "label": "PDF export", "included": true }
+          ],
+          "cta": "Go Pro"
         },
         "family": {
           "name": "Family",
-          "price": "$19/mo",
-          "features": ["Up to 5 profiles", "Sharing controls", "Priority support"],
-          "button": "Choose Family"
+          "subPriceText": "Best for families with multiple kids.",
+          "features": [
+            { "id": "profiles", "label": "Up to 5 profiles", "included": true },
+            { "id": "sharingControls", "label": "Sharing controls", "included": true },
+            { "id": "prioritySupport", "label": "Priority support", "included": true }
+          ],
+          "cta": "Choose Family"
         }
+      }
+    },
+    "Catalog": {
+      "title": "Bilingual story catalog",
+      "subtitle": "Pick a story and read it in FI / EN / SV with consistent 1:1 meaning.",
+      "filters": {
+        "all": "All languages"
+      },
+      "card": {
+        "minutes": "{minutes} min",
+        "open": "Open",
+        "placeholder": "Cover preview",
+        "defaultAlt": "Story cover"
+      },
+      "actions": {
+        "viewCatalog": "View catalog"
       }
     }
   }
 }
-
-
