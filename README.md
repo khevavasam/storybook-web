@@ -17,12 +17,20 @@ http://localhost:3000
 ```
 
 ## Env
-Create `.env.local` (do not commit). Use `.env.example` as template.
+
+Create `.env.local` and `.env` (do not commit).  
+Use `.env.example` as a template.
 
 Required for local development:
-```env
+
+```.env.local
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
+
+```.env
+DATABASE_URL=postgresql://postgres:REAL_PASSWORD@db.rcgmdmdhastjlwlawhdt.supabase.co:5432/postgres
+
+
 
 
 ## Scripts
