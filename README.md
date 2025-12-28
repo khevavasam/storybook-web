@@ -19,14 +19,11 @@ http://localhost:3000
 ## Env
 Create `.env.local` (do not commit). Use `.env.example` as template.
 
-Example:
+Required for local development:
 ```env
-DATABASE_URL=
-NEXTAUTH_URL=http://localhost:3000
-NEXTAUTH_SECRET=
-GOOGLE_CLIENT_ID=
-GOOGLE_CLIENT_SECRET=
-```
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+
 
 ## Scripts
 
