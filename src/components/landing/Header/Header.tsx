@@ -15,6 +15,7 @@ import {
 } from '@chakra-ui/react'
 import { Moon, Sun } from '@phosphor-icons/react'
 
+import { AuthButtons } from '../Auth/AuthButtons'
 import { useColorMode } from '@/theme/color-mode'
 import styles from './Header.module.css'
 
@@ -95,30 +96,7 @@ export const Header: React.FC<HeaderProps> = ({
           </HStack>
 
           <HStack flex="1" justify="flex-end" gap={2}>
-            <ChakraLink as={NextLink} href={loginHref} _hover={{ textDecoration: 'none' }}>
-              <Button
-                variant="outline"
-                size="sm"
-                px={5}
-                minH={10}
-                borderRadius="full"
-              >
-                {t('actions.login')}
-              </Button>
-            </ChakraLink>
-
-            <ChakraLink as={NextLink} href={joinHref} _hover={{ textDecoration: 'none' }}>
-              <Button
-                variant="solid"
-                size="sm"
-                px={6}
-                minH={10}
-                borderRadius="full"
-              >
-                {t('actions.join')}
-              </Button>
-            </ChakraLink>
-
+            <AuthButtons variant="header" />
             <IconButton
               aria-label={t('actions.toggleTheme')}
               onClick={handleToggleTheme}

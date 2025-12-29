@@ -17,6 +17,7 @@ import styles from './Hero.module.css'
 
 import heroDark from '../../../../public/hero/hero-dark.png'
 import heroLight from '../../../../public/hero/hero-light.png'
+import { AuthButtons } from '../Auth/AuthButtons'
 
 export const Hero: React.FC = () => {
   const t = useTranslations('Landing.Hero')
@@ -61,9 +62,7 @@ export const Hero: React.FC = () => {
             </Text>
 
             <HStack gap={4} pt={2} justify={{ base: 'center', md: 'flex-start' }} flexWrap="wrap">
-              <Button size="lg" variant="solid" borderRadius="full" px={7} minH={12}>
-                {t('primaryCta')}
-              </Button>
+              <AuthButtons variant="hero" />
 
               <Button size="lg" variant="outline" borderRadius="full" px={7} minH={12}>
                 {t('secondaryCta')}

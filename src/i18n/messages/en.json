@@ -9,10 +9,14 @@
         "reviews": "Reviews"
       },
       "actions": {
-        "login": "Log in",
-        "join": "Join for free",
         "toggleTheme": "Toggle theme"
       }
+    },
+    "AuthButtons": {
+      "login": "Log in",
+      "startReading": "Start reading",
+      "profile": "Profile",
+      "logout": "Log out"
     },
     "Hero": {
       "title": "One Hero. Three Languages.",
