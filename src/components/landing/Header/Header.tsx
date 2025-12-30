@@ -5,7 +5,6 @@ import NextLink from 'next/link'
 import { useTranslations } from 'next-intl'
 import {
   Box,
-  Button,
   Container,
   Flex,
   HStack,
@@ -19,15 +18,7 @@ import { AuthButtons } from '../Auth/AuthButtons'
 import { useColorMode } from '@/theme/color-mode'
 import styles from './Header.module.css'
 
-interface HeaderProps {
-  loginHref?: string
-  joinHref?: string
-}
-
-export const Header: React.FC<HeaderProps> = ({
-  loginHref = '/login',
-  joinHref = '/join',
-}) => {
+export const Header: React.FC = () => {
   const t = useTranslations('Landing.Header')
   const { colorMode, toggleColorMode } = useColorMode()
   const isDark = colorMode === 'dark'
@@ -47,16 +38,7 @@ export const Header: React.FC<HeaderProps> = ({
   }, [toggleColorMode])
 
   return (
-    <Box
-      as="header"
-      position="fixed"
-      top={0}
-      left={0}
-      right={0}
-      w="full"
-      zIndex="sticky"
-      bg="transparent"
-    >
+    <Box as="header" position="fixed" top={0} left={0} right={0} w="full" zIndex="sticky" bg="transparent">
       <Container maxW="6xl" px={{ base: 4, md: 6 }} mx="auto">
         <Flex align="center" py={4} gap={4} className={styles.shell}>
           <Box flex="1" minW="fit-content">
@@ -73,13 +55,7 @@ export const Header: React.FC<HeaderProps> = ({
             </ChakraLink>
           </Box>
 
-          <HStack
-            as="nav"
-            flex="2"
-            justify="center"
-            gap={6}
-            display={{ base: 'none', md: 'flex' }}
-          >
+          <HStack as="nav" flex="2" justify="center" gap={6} display={{ base: 'none', md: 'flex' }}>
             {navItems.map((item) => (
               <ChakraLink
                 key={item.href}
