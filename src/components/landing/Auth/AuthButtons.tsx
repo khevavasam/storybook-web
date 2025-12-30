@@ -1,13 +1,12 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import NextLink from 'next/link'
 import { useTranslations } from 'next-intl'
-import { Button, HStack, Link as ChakraLink } from '@chakra-ui/react'
-import type { Session } from '@supabase/supabase-js'
+import { Button, HStack } from '@chakra-ui/react'
 
-import { supabase } from '@/lib/supabase/client'
-import { signInWithGoogle } from '@/lib/auth/google'
+import { LoginButton, LogoutButton } from '@/components/auth'
+import { useSession } from '@/lib/auth/useSession'
 
 type Variant = 'header' | 'hero'
 
@@ -16,45 +15,19 @@ type Props = {
   profileHref?: string
 }
 
+const ProfileButton = Button as unknown as React.FC<
+  React.ComponentProps<typeof Button> & { href: string }
+>
+
 export const AuthButtons: React.FC<Props> = ({
   variant,
   profileHref = '/profile',
 }) => {
   const t = useTranslations('Landing.AuthButtons')
 
-  const [session, setSession] = useState<Session | null>(null)
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    let alive = true
-
-    supabase.auth.getSession().then(({ data }) => {
-      if (!alive) return
-      setSession(data.session)
-      setLoading(false)
-    })
-
-    const { data: sub } = supabase.auth.onAuthStateChange((_event, nextSession) => {
-      setSession(nextSession)
-    })
-
-    return () => {
-      alive = false
-      sub.subscription.unsubscribe()
-    }
-  }, [])
-
-  const onLogin = async () => {
-    await signInWithGoogle()
-  }
-
-  const onLogout = async () => {
-    await supabase.auth.signOut()
-  }
+  const { loading, isAuthed } = useSession()
 
   if (loading) return null
-
-  const isAuthed = !!session
 
   if (isAuthed && variant === 'hero') return null
 
@@ -72,35 +45,33 @@ export const AuthButtons: React.FC<Props> = ({
     if (variant === 'header') {
       return (
         <HStack gap={2}>
-          <Button variant="outline" onClick={onLogin} {...outlineProps}>
+          <LoginButton variant="outline" {...outlineProps}>
             {t('login')}
-          </Button>
+          </LoginButton>
 
-          <Button variant="solid" onClick={onLogin} {...solidProps}>
+          <LoginButton variant="solid" {...solidProps}>
             {t('startReading')}
-          </Button>
+          </LoginButton>
         </HStack>
       )
     }
 
     return (
-      <Button variant="solid" onClick={onLogin} {...solidProps}>
+      <LoginButton variant="solid" {...solidProps}>
         {t('startReading')}
-      </Button>
+      </LoginButton>
     )
   }
 
   return (
     <HStack gap={2}>
-      <ChakraLink as={NextLink} href={profileHref} _hover={{ textDecoration: 'none' }}>
-        <Button variant="outline" {...outlineProps}>
-          {t('profile')}
-        </Button>
-      </ChakraLink>
+      <ProfileButton as={NextLink} href={profileHref} variant="outline" {...outlineProps}>
+        {t('profile')}
+      </ProfileButton>
 
-      <Button variant="solid" onClick={onLogout} {...solidProps}>
+      <LogoutButton variant="solid" {...solidProps}>
         {t('logout')}
-      </Button>
+      </LogoutButton>
     </HStack>
   )
 }
