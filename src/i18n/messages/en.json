@@ -107,5 +107,34 @@
         "viewCatalog": "View catalog"
       }
     }
+  },
+  "Profile": {
+    "fallback": {
+      "name": "Your profile",
+      "email": "No email"
+    },
+    "meta": {
+      "providerLabel": "Signed in with"
+    },
+    "actions": {
+      "logout": "Log out",
+      "startReading": "Start reading",
+      "upgrade": "Upgrade"
+    },
+    "sections": {
+      "library": {
+        "title": "Your library",
+        "empty": "Your saved stories will appear here."
+      },
+      "account": {
+        "title": "Account"
+      },
+      "subscription": {
+        "title": "Subscription"
+      }
+    },
+    "common": {
+      "comingSoon": "Coming soon"
+    }
   }
 }
