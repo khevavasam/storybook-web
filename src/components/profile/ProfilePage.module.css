@@ -4,7 +4,7 @@
   background: var(--chakra-colors-bg-subtle);
   border: 1px solid var(--chakra-colors-border-muted);
   backdrop-filter: blur(1.5rem);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .headerCard {
@@ -18,4 +18,16 @@
 
 .avatar:hover {
   transform: scale(1.03);
+}
+
+.scrollX {
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollX::-webkit-scrollbar {
+  display: none;
+  height: 0;
 }

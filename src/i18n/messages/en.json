@@ -113,6 +113,15 @@
       "name": "Your profile",
       "email": "No email"
     },
+    "Library": {
+      "title": "Your library",
+      "subtitle": "Your saved stories and recent reads.",
+      "empty": "Your saved stories will appear here.",
+      "actions": {
+        "startReading": "Start reading",
+        "viewAll": "View all"
+      }
+    },
     "meta": {
       "providerLabel": "Signed in with"
     },
@@ -135,6 +144,12 @@
     },
     "common": {
       "comingSoon": "Coming soon"
+    }
+  },
+  "CatalogPage": {
+    "title": "Catalog",
+    "actions": {
+      "backHome": "Back to profile"
     }
   }
 }
