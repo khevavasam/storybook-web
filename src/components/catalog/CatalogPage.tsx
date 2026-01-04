@@ -6,8 +6,8 @@ import {
   Box,
   Button,
   Container,
+  Flex,
   Heading,
-  HStack,
   Link as ChakraLink,
   Stack,
 } from '@chakra-ui/react'
@@ -24,19 +24,34 @@ export function CatalogPage({ stories }: CatalogPageProps) {
 
   return (
     <Box as="main" py={{ base: 8, md: 12 }}>
-      <Container maxW="6xl" px={{ base: 4, md: 6 }}>
+      <Container maxW="6xl" px={{ base: 4, md: 6 }} mx="auto">
         <Stack gap={{ base: 6, md: 8 }}>
-          <HStack justify="space-between" align="center" gap={4}>
-            <Heading as="h1" size={{ base: 'xl', md: '2xl' }} color="primary.default">
+          <Flex
+            align={{ base: 'stretch', md: 'center' }}
+            justify="space-between"
+            direction={{ base: 'column', md: 'row' }}
+            gap={{ base: 3, md: 4 }}
+          >
+            <Heading
+              as="h1"
+              size={{ base: 'xl', md: '2xl' }}
+              color="primary.default"
+              textAlign={{ base: 'center', md: 'left' }}
+            >
               {t('title')}
             </Heading>
 
-            <ChakraLink as={NextLink} href="/" _hover={{ textDecoration: 'none' }}>
+            <ChakraLink
+              as={NextLink}
+              href="/profile" 
+              _hover={{ textDecoration: 'none' }}
+              alignSelf={{ base: 'center', md: 'auto' }}
+            >
               <Button variant="outline" borderRadius="full" px={6}>
                 {t('actions.backHome')}
               </Button>
             </ChakraLink>
-          </HStack>
+          </Flex>
 
           <CatalogGrid stories={stories} />
         </Stack>
