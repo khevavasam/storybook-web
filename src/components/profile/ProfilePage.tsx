@@ -2,8 +2,8 @@
 
 import React from 'react'
 import type { Session } from '@supabase/supabase-js'
-import { useTranslations } from 'next-intl'
 import NextLink from 'next/link'
+import { useTranslations } from 'next-intl'
 import {
   Avatar,
   Box,
@@ -13,7 +13,6 @@ import {
   Grid,
   Heading,
   HStack,
-  Link as ChakraLink,
   Stack,
   Tag,
   Text,
@@ -26,6 +25,12 @@ import styles from './ProfilePage.module.css'
 
 type Props = {
   session: Session | null
+}
+
+const actionBtnProps = {
+  size: 'sm' as const,
+  px: 6,
+  borderRadius: 'full' as const,
 }
 
 function prettyProvider(provider?: string) {
@@ -49,13 +54,6 @@ export function ProfilePage({ session }: Props) {
     user?.user_metadata?.avatar_url || user?.user_metadata?.picture
   const provider = prettyProvider(user?.app_metadata?.provider)
 
-  const actionBtnProps = {
-    size: 'sm' as const,
-    px: 6,
-    borderRadius: 'full' as const,
-  }
-
-  // превью как в /catalog: 4 карточки фикс ширины, скролл если не помещаются
   const libraryPreviewStories = mockStories.slice(0, 4)
 
   return (
@@ -146,21 +144,20 @@ export function ProfilePage({ session }: Props) {
                     <Box
                       w="full"
                       overflowX="auto"
-                      overflowY="hidden"
+                      overflowY="visible"
                       pb={3}
+                      pt={2}
+                      px={1}
                       scrollSnapType="x mandatory"
-                      css={{
-                        WebkitOverflowScrolling: 'touch',
-                        scrollbarGutter: 'stable',
-                        scrollbarWidth: 'thin',
-                      }}
+                      scrollPaddingInline={{ base: '0.5rem', md: '0.75rem' }}
+                      className={styles.scrollX}
                     >
-                      <Flex gap={6} w="max-content" px={1}>
+                      <Flex gap={6} w="max-content">
                         {libraryPreviewStories.map((story) => (
                           <Box
                             key={story.id}
-                            w="320px"
-                            flex="0 0 320px"
+                            w={{ base: '16rem', md: '20rem' }}
+                            flex={{ base: '0 0 16rem', md: '0 0 20rem' }}
                             scrollSnapAlign="start"
                           >
                             <StoryCard story={story} />
@@ -175,25 +172,17 @@ export function ProfilePage({ session }: Props) {
                   )}
 
                   <Flex gap={3} align="center" justify="flex-start" wrap="wrap">
-                    <ChakraLink
-                      as={NextLink}
-                      href="/catalog"
-                      _hover={{ textDecoration: 'none' }}
-                    >
-                      <Button variant="solid" {...actionBtnProps}>
+                    <Button asChild variant="solid" {...actionBtnProps}>
+                      <NextLink href="/catalog">
                         {tLibrary('actions.startReading')}
-                      </Button>
-                    </ChakraLink>
+                      </NextLink>
+                    </Button>
 
-                    <ChakraLink
-                      as={NextLink}
-                      href="/catalog"
-                      _hover={{ textDecoration: 'none' }}
-                    >
-                      <Button variant="outline" {...actionBtnProps}>
+                    <Button asChild variant="outline" {...actionBtnProps}>
+                      <NextLink href="/catalog">
                         {tLibrary('actions.viewAll')}
-                      </Button>
-                    </ChakraLink>
+                      </NextLink>
+                    </Button>
                   </Flex>
                 </Stack>
               </Card.Body>
