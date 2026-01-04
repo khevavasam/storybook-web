@@ -9,6 +9,7 @@ import {
   Box,
   Button,
   Card,
+  Flex,
   Grid,
   Heading,
   HStack,
@@ -19,8 +20,8 @@ import {
 } from '@chakra-ui/react'
 
 import { LogoutButton } from '@/components/auth'
-import { CatalogGrid } from '@/components/catalog'
 import { mockStories } from '@/components/landing/Catalog/mockStories'
+import { StoryCard } from '@/components/landing/Catalog/StoryCard'
 import styles from './ProfilePage.module.css'
 
 type Props = {
@@ -44,7 +45,8 @@ export function ProfilePage({ session }: Props) {
     t('fallback.name')
 
   const email = user?.email || t('fallback.email')
-  const avatarUrl = user?.user_metadata?.avatar_url || user?.user_metadata?.picture
+  const avatarUrl =
+    user?.user_metadata?.avatar_url || user?.user_metadata?.picture
   const provider = prettyProvider(user?.app_metadata?.provider)
 
   const actionBtnProps = {
@@ -53,7 +55,8 @@ export function ProfilePage({ session }: Props) {
     borderRadius: 'full' as const,
   }
 
-  const libraryPreviewStories = mockStories.slice(0, 3)
+  // превью как в /catalog: 4 карточки фикс ширины, скролл если не помещаются
+  const libraryPreviewStories = mockStories.slice(0, 4)
 
   return (
     <Box
@@ -66,7 +69,10 @@ export function ProfilePage({ session }: Props) {
     >
       <Box w="full" maxW="6xl">
         <Stack gap={{ base: 4, md: 6 }} w="full">
-          <Card.Root variant="outline" className={`${styles.card} ${styles.headerCard}`}>
+          <Card.Root
+            variant="outline"
+            className={`${styles.card} ${styles.headerCard}`}
+          >
             <Card.Body p={{ base: 4, md: 6 }}>
               <Grid
                 templateColumns={{ base: '1fr', md: '1fr auto' }}
@@ -75,7 +81,9 @@ export function ProfilePage({ session }: Props) {
               >
                 <HStack gap={4} minW={0}>
                   <Avatar.Root size="lg" className={styles.avatar}>
-                    {avatarUrl ? <Avatar.Image src={avatarUrl} alt={name} /> : null}
+                    {avatarUrl ? (
+                      <Avatar.Image src={avatarUrl} alt={name} />
+                    ) : null}
                     <Avatar.Fallback name={name} />
                   </Avatar.Root>
 
@@ -93,7 +101,14 @@ export function ProfilePage({ session }: Props) {
                         {t('meta.providerLabel')}
                       </Text>
 
-                      <Tag.Root size="md" variant="subtle" px={3} py={1} borderRadius="full" borderWidth="1px"                      >
+                      <Tag.Root
+                        size="md"
+                        variant="subtle"
+                        px={3}
+                        py={1}
+                        borderRadius="full"
+                        borderWidth="1px"
+                      >
                         <Tag.Label fontSize="sm">{provider}</Tag.Label>
                       </Tag.Root>
                     </HStack>
@@ -115,7 +130,11 @@ export function ProfilePage({ session }: Props) {
           >
             <Card.Root variant="outline" className={styles.card}>
               <Card.Body p={{ base: 4, md: 6 }} h={{ lg: 'full' }}>
-                <Stack gap={4} h={{ lg: 'full' }} justify={{ lg: 'space-between' }}>
+                <Stack
+                  gap={4}
+                  h={{ lg: 'full' }}
+                  justify={{ lg: 'space-between' }}
+                >
                   <Stack gap={2}>
                     <Heading size="md">{tLibrary('title')}</Heading>
                     <Text fontSize="sm" opacity={0.85}>
@@ -124,26 +143,58 @@ export function ProfilePage({ session }: Props) {
                   </Stack>
 
                   {libraryPreviewStories.length > 0 ? (
-                    <CatalogGrid stories={libraryPreviewStories} columns={{ base: 1, md: 3 }} gap={4} />
+                    <Box
+                      w="full"
+                      overflowX="auto"
+                      overflowY="hidden"
+                      pb={3}
+                      scrollSnapType="x mandatory"
+                      css={{
+                        WebkitOverflowScrolling: 'touch',
+                        scrollbarGutter: 'stable',
+                        scrollbarWidth: 'thin',
+                      }}
+                    >
+                      <Flex gap={6} w="max-content" px={1}>
+                        {libraryPreviewStories.map((story) => (
+                          <Box
+                            key={story.id}
+                            w="320px"
+                            flex="0 0 320px"
+                            scrollSnapAlign="start"
+                          >
+                            <StoryCard story={story} />
+                          </Box>
+                        ))}
+                      </Flex>
+                    </Box>
                   ) : (
                     <Text fontSize="sm" opacity={0.85}>
                       {tLibrary('empty')}
                     </Text>
                   )}
 
-                  <HStack gap={3} align="center" justify="flex-start" flexWrap="wrap">
-                    <ChakraLink as={NextLink} href="/catalog" _hover={{ textDecoration: 'none' }}>
+                  <Flex gap={3} align="center" justify="flex-start" wrap="wrap">
+                    <ChakraLink
+                      as={NextLink}
+                      href="/catalog"
+                      _hover={{ textDecoration: 'none' }}
+                    >
                       <Button variant="solid" {...actionBtnProps}>
                         {tLibrary('actions.startReading')}
                       </Button>
                     </ChakraLink>
 
-                    <ChakraLink as={NextLink} href="/catalog" _hover={{ textDecoration: 'none' }}>
+                    <ChakraLink
+                      as={NextLink}
+                      href="/catalog"
+                      _hover={{ textDecoration: 'none' }}
+                    >
                       <Button variant="outline" {...actionBtnProps}>
                         {tLibrary('actions.viewAll')}
                       </Button>
                     </ChakraLink>
-                  </HStack>
+                  </Flex>
                 </Stack>
               </Card.Body>
             </Card.Root>
@@ -166,15 +217,25 @@ export function ProfilePage({ session }: Props) {
 
               <Card.Root variant="outline" className={styles.card}>
                 <Card.Body p={{ base: 4, md: 6 }} h={{ lg: 'full' }}>
-                  <Stack gap={4} h={{ lg: 'full' }} justify={{ lg: 'space-between' }}>
+                  <Stack
+                    gap={4}
+                    h={{ lg: 'full' }}
+                    justify={{ lg: 'space-between' }}
+                  >
                     <Stack gap={2}>
-                      <Heading size="sm">{t('sections.subscription.title')}</Heading>
+                      <Heading size="sm">
+                        {t('sections.subscription.title')}
+                      </Heading>
                       <Text fontSize="sm" opacity={0.85}>
                         {t('common.comingSoon')}
                       </Text>
                     </Stack>
 
-                    <Button variant="solid" alignSelf="flex-start" {...actionBtnProps}>
+                    <Button
+                      variant="solid"
+                      alignSelf="flex-start"
+                      {...actionBtnProps}
+                    >
                       {t('actions.upgrade')}
                     </Button>
                   </Stack>
