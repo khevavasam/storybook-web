@@ -43,7 +43,7 @@ export function CatalogPage({ stories }: CatalogPageProps) {
 
             <ChakraLink
               as={NextLink}
-              href="/profile" 
+              href="/profile"
               _hover={{ textDecoration: 'none' }}
               alignSelf={{ base: 'center', md: 'auto' }}
             >
