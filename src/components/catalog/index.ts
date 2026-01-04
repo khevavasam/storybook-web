@@ -1,0 +1,3 @@
+export { CatalogGrid } from './CatalogGrid'
+
+

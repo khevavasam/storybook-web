@@ -3,6 +3,7 @@
 import React from 'react'
 import type { Session } from '@supabase/supabase-js'
 import { useTranslations } from 'next-intl'
+import NextLink from 'next/link'
 import {
   Avatar,
   Box,
@@ -11,12 +12,15 @@ import {
   Grid,
   Heading,
   HStack,
+  Link as ChakraLink,
   Stack,
   Tag,
   Text,
 } from '@chakra-ui/react'
 
 import { LogoutButton } from '@/components/auth'
+import { CatalogGrid } from '@/components/catalog'
+import { mockStories } from '@/components/landing/Catalog/mockStories'
 import styles from './ProfilePage.module.css'
 
 type Props = {
@@ -31,6 +35,7 @@ function prettyProvider(provider?: string) {
 
 export function ProfilePage({ session }: Props) {
   const t = useTranslations('Profile')
+  const tLibrary = useTranslations('Profile.Library')
   const user = session?.user
 
   const name =
@@ -47,6 +52,8 @@ export function ProfilePage({ session }: Props) {
     px: 6,
     borderRadius: 'full' as const,
   }
+
+  const libraryPreviewStories = mockStories.slice(0, 3)
 
   return (
     <Box
@@ -110,15 +117,33 @@ export function ProfilePage({ session }: Props) {
               <Card.Body p={{ base: 4, md: 6 }} h={{ lg: 'full' }}>
                 <Stack gap={4} h={{ lg: 'full' }} justify={{ lg: 'space-between' }}>
                   <Stack gap={2}>
-                    <Heading size="md">{t('sections.library.title')}</Heading>
+                    <Heading size="md">{tLibrary('title')}</Heading>
                     <Text fontSize="sm" opacity={0.85}>
-                      {t('sections.library.empty')}
+                      {tLibrary('subtitle')}
                     </Text>
                   </Stack>
 
-                  <Button variant="solid" alignSelf="flex-start" {...actionBtnProps}>
-                    {t('actions.startReading')}
-                  </Button>
+                  {libraryPreviewStories.length > 0 ? (
+                    <CatalogGrid stories={libraryPreviewStories} columns={{ base: 1, md: 3 }} gap={4} />
+                  ) : (
+                    <Text fontSize="sm" opacity={0.85}>
+                      {tLibrary('empty')}
+                    </Text>
+                  )}
+
+                  <HStack gap={3} align="center" justify="flex-start" flexWrap="wrap">
+                    <ChakraLink as={NextLink} href="/catalog" _hover={{ textDecoration: 'none' }}>
+                      <Button variant="solid" {...actionBtnProps}>
+                        {tLibrary('actions.startReading')}
+                      </Button>
+                    </ChakraLink>
+
+                    <ChakraLink as={NextLink} href="/catalog" _hover={{ textDecoration: 'none' }}>
+                      <Button variant="outline" {...actionBtnProps}>
+                        {tLibrary('actions.viewAll')}
+                      </Button>
+                    </ChakraLink>
+                  </HStack>
                 </Stack>
               </Card.Body>
             </Card.Root>
