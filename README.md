@@ -39,8 +39,8 @@ Use .env.example as a template.
 .env.local
 Required for local development:
 
-NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
+    NEXT_PUBLIC_SUPABASE_URL=
+    NEXT_PUBLIC_SUPABASE_ANON_KEY=
 
 .env
 Required for server-side and database access:
