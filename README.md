@@ -45,9 +45,8 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=
 .env
 Required for server-side and database access:
 
-DATABASE_URL=postgresql://postgres:REAL_PASSWORD@db.rcgmdmdhastjlwlawhdt.supabase.co:5432/postgres
+    DATABASE_URL=postgresql://postgres:REAL_PASSWORD@db.rcgmdmdhastjlwlawhdt.supabase.co:5432/postgres
 
----
 
 ## Scripts
 
