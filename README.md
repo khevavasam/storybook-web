@@ -38,16 +38,11 @@ Use `.env.example` as a template.
 
 .env.local
 
-Required for client-side and Supabase features:
-
+Required for local development:
+.env.local
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
-
-.env
-
-Required for server-side and database access:
-
-DATABASE_URL=postgresql://postgres:REAL_PASSWORD@db.rcgmdmdhastjlwlawhdt.supabase.co:5432/postgres
+.env DATABASE_URL=postgresql://postgres:REAL_PASSWORD@db.rcgmdmdhastjlwlawhdt.supabase.co:5432/postgres
 
 ---
 
