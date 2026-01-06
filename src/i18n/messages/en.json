@@ -9,10 +9,14 @@
         "reviews": "Reviews"
       },
       "actions": {
-        "login": "Log in",
-        "join": "Join for free",
         "toggleTheme": "Toggle theme"
       }
+    },
+    "AuthButtons": {
+      "login": "Log in",
+      "startReading": "Start reading",
+      "profile": "Profile",
+      "logout": "Log out"
     },
     "Hero": {
       "title": "One Hero. Three Languages.",
@@ -102,6 +106,50 @@
       "actions": {
         "viewCatalog": "View catalog"
       }
+    }
+  },
+  "Profile": {
+    "fallback": {
+      "name": "Your profile",
+      "email": "No email"
+    },
+    "Library": {
+      "title": "Your library",
+      "subtitle": "Your saved stories and recent reads.",
+      "empty": "Your saved stories will appear here.",
+      "actions": {
+        "startReading": "Start reading",
+        "viewAll": "View all"
+      }
+    },
+    "meta": {
+      "providerLabel": "Signed in with"
+    },
+    "actions": {
+      "logout": "Log out",
+      "startReading": "Start reading",
+      "upgrade": "Upgrade"
+    },
+    "sections": {
+      "library": {
+        "title": "Your library",
+        "empty": "Your saved stories will appear here."
+      },
+      "account": {
+        "title": "Account"
+      },
+      "subscription": {
+        "title": "Subscription"
+      }
+    },
+    "common": {
+      "comingSoon": "Coming soon"
+    }
+  },
+  "CatalogPage": {
+    "title": "Catalog",
+    "actions": {
+      "backHome": "Back to profile"
     }
   }
 }

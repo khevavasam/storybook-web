@@ -1,0 +1,33 @@
+.card {
+  position: relative;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+  background: var(--chakra-colors-bg-subtle);
+  border: 1px solid var(--chakra-colors-border-muted);
+  backdrop-filter: blur(1.5rem);
+  overflow: visible;
+}
+
+.headerCard {
+  box-shadow: var(--chakra-shadows-xl);
+  backdrop-filter: blur(1.5rem);
+}
+
+.avatar {
+  transition: transform 160ms ease;
+}
+
+.avatar:hover {
+  transform: scale(1.03);
+}
+
+.scrollX {
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollX::-webkit-scrollbar {
+  display: none;
+  height: 0;
+}
