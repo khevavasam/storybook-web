@@ -21,7 +21,6 @@
     "Hero": {
       "title": "One Hero. Three Languages.",
       "subtitle": "Discover bilingual bedtime stories for children 3+. Read the same tale in Finnish, English, or Swedish — with one hero and one adventure.",
-      "primaryCta": "Start Reading",
       "secondaryCta": "Watch Demo",
       "imageAlt": "Reading illustration"
     },
@@ -98,10 +97,8 @@
         "all": "All languages"
       },
       "card": {
-        "minutes": "{minutes} min",
         "open": "Open",
-        "placeholder": "Cover preview",
-        "defaultAlt": "Story cover"
+        "placeholder": "Cover preview"
       },
       "actions": {
         "viewCatalog": "View catalog"
@@ -127,14 +124,9 @@
     },
     "actions": {
       "logout": "Log out",
-      "startReading": "Start reading",
       "upgrade": "Upgrade"
     },
     "sections": {
-      "library": {
-        "title": "Your library",
-        "empty": "Your saved stories will appear here."
-      },
       "account": {
         "title": "Account"
       },
