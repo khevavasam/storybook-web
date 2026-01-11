@@ -16,9 +16,9 @@ import {
   Text,
 } from '@chakra-ui/react'
 
-import { mockStories } from './mockStories'
-import { StoryCard } from './StoryCard'
-import type { StoryLanguage, StoryPreview } from './types'
+import { mockStories } from '../../catalog/mockStories'
+import { StoryCard } from '../../catalog'
+import type { StoryLanguage, StoryPreview } from '../../catalog/types'
 import styles from './Catalog.module.css'
 
 type LanguageFilter = 'ALL' | StoryLanguage
