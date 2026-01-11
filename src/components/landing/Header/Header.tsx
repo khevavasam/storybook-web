@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useMemo } from "react";
+import React, { useMemo } from "react";
 import NextLink from "next/link";
 import { useTranslations } from "next-intl";
 import {

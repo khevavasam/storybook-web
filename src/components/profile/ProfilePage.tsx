@@ -20,8 +20,8 @@ import {
 
 import { LogoutButton } from "@/components/auth";
 import ThemeToggleButton from "@/components/background/ThemeToggleButton";
-import { mockStories } from "@/components/landing/Catalog/mockStories";
-import { StoryCard } from "@/components/landing/Catalog/StoryCard";
+import { mockStories } from "@/components/catalog/mockStories";
+import { StoryCard } from "@/components/catalog";
 import styles from "./ProfilePage.module.css";
 
 type Props = {
@@ -162,9 +162,11 @@ export function ProfilePage({ session }: Props) {
                             key={story.id}
                             w={{ base: "16rem", md: "20rem" }}
                             flex={{ base: "0 0 16rem", md: "0 0 20rem" }}
+                            display="flex"
+                            alignItems="stretch"
                             scrollSnapAlign="start"
                           >
-                            <StoryCard story={story} />
+                            <StoryCard story={story} size="large" />
                           </Box>
                         ))}
                       </Flex>

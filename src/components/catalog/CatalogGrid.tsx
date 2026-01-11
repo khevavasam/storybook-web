@@ -1,31 +1,40 @@
-'use client'
+"use client";
 
-import React from 'react'
-import { Box, SimpleGrid } from '@chakra-ui/react'
+import React from "react";
+import { Box, SimpleGrid } from "@chakra-ui/react";
 
-import { StoryCard } from '../landing/Catalog/StoryCard'
-import type { StoryPreview } from '../landing/Catalog/types'
+import { StoryCard } from "./StoryCard";
+import type { StoryPreview } from "./types";
 
 export interface CatalogGridProps {
-  stories: StoryPreview[]
-  onOpen?: (id: string) => void
+  stories: StoryPreview[];
+  onOpen?: (id: string) => void;
 }
 
-export const CatalogGrid: React.FC<CatalogGridProps> = ({ stories, onOpen }) => {
+export const CatalogGrid: React.FC<CatalogGridProps> = ({
+  stories,
+  onOpen,
+}) => {
   return (
     <SimpleGrid
-      columns={{ base: 1, sm: 2, lg: 4 }}
+      minChildWidth={{ base: "16rem", md: "18rem" }}
       gap={6}
       w="full"
-      maxW={{ base: '320px', sm: '700px', lg: '1400px' }}
+      maxW={{ base: "640px", md: "1400px" }}
       mx="auto"
       justifyItems="center"
     >
       {stories.map((story) => (
-        <Box key={story.id} w="full" maxW="320px">
-          <StoryCard story={story} onOpen={onOpen} />
+        <Box
+          key={story.id}
+          w="full"
+          maxW="20rem"
+          display="flex"
+          alignItems="stretch"
+        >
+          <StoryCard story={story} onOpen={onOpen} size="default" />
         </Box>
       ))}
     </SimpleGrid>
-  )
-}
+  );
+};
