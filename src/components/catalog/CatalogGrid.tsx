@@ -3,8 +3,8 @@
 import React from 'react'
 import { Box, SimpleGrid } from '@chakra-ui/react'
 
-import { StoryCard } from '../landing/Catalog/StoryCard'
-import type { StoryPreview } from '../landing/Catalog/types'
+import { StoryCard } from './StoryCard'
+import type { StoryPreview } from './types'
 
 export interface CatalogGridProps {
   stories: StoryPreview[]

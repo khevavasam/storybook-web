@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 
 import { CatalogGrid } from "./CatalogGrid";
-import type { StoryPreview } from "../landing/Catalog/types";
+import type { StoryPreview } from "./types";
 import ThemeToggleButton from "@/components/background/ThemeToggleButton";
 
 export interface CatalogPageProps {

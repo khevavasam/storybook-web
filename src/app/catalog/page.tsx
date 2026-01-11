@@ -1,4 +1,4 @@
-import { mockStories } from '@/components/landing/Catalog/mockStories'
+import { mockStories } from '@/components/catalog/mockStories'
 import { CatalogPage } from '@/components/catalog'
 
 export default function CatalogRoutePage() {

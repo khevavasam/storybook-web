@@ -20,8 +20,8 @@ import {
 
 import { LogoutButton } from "@/components/auth";
 import ThemeToggleButton from "@/components/background/ThemeToggleButton";
-import { mockStories } from "@/components/landing/Catalog/mockStories";
-import { StoryCard } from "@/components/landing/Catalog/StoryCard";
+import { mockStories } from "@/components/catalog/mockStories";
+import { StoryCard } from "@/components/catalog";
 import styles from "./ProfilePage.module.css";
 
 type Props = {
