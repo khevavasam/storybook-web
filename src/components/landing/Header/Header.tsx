@@ -1,61 +1,71 @@
-'use client'
+"use client";
 
-import React, { useCallback, useMemo } from 'react'
-import NextLink from 'next/link'
-import { useTranslations } from 'next-intl'
+import React, { useCallback, useMemo } from "react";
+import NextLink from "next/link";
+import { useTranslations } from "next-intl";
 import {
   Box,
   Container,
   Flex,
   HStack,
-  IconButton,
   Link as ChakraLink,
   Text,
-} from '@chakra-ui/react'
-import { Moon, Sun } from '@phosphor-icons/react'
-
-import { AuthButtons } from '../Auth/AuthButtons'
-import { useColorMode } from '@/theme/color-mode'
-import styles from './Header.module.css'
+} from "@chakra-ui/react";
+import { AuthButtons } from "../Auth/AuthButtons";
+import ThemeToggleButton from "@/components/background/ThemeToggleButton";
+import styles from "./Header.module.css";
 
 export const Header: React.FC = () => {
-  const t = useTranslations('Landing.Header')
-  const { colorMode, toggleColorMode } = useColorMode()
-  const isDark = colorMode === 'dark'
+  const t = useTranslations("Landing.Header");
 
   const navItems = useMemo(
     () => [
-      { href: '#how', label: t('nav.howItWorks') },
-      { href: '#catalog-cards', label: t('nav.catalog') },
-      { href: '#pricing-plans', label: t('nav.pricing') },
-      { href: '#reviews', label: t('nav.reviews') },
+      { href: "#how", label: t("nav.howItWorks") },
+      { href: "#catalog-cards", label: t("nav.catalog") },
+      { href: "#pricing-plans", label: t("nav.pricing") },
+      { href: "#reviews", label: t("nav.reviews") },
     ],
     [t]
-  )
-
-  const handleToggleTheme = useCallback(() => {
-    toggleColorMode()
-  }, [toggleColorMode])
+  );
 
   return (
-    <Box as="header" position="fixed" top={0} left={0} right={0} w="full" zIndex="sticky" bg="transparent">
+    <Box
+      as="header"
+      position="fixed"
+      top={0}
+      left={0}
+      right={0}
+      w="full"
+      zIndex="sticky"
+      bg="transparent"
+    >
       <Container maxW="6xl" px={{ base: 4, md: 6 }} mx="auto">
         <Flex align="center" py={4} gap={4} className={styles.shell}>
           <Box flex="1" minW="fit-content">
-            <ChakraLink as={NextLink} href="/" _hover={{ textDecoration: 'none' }}>
+            <ChakraLink
+              as={NextLink}
+              href="/"
+              _hover={{ textDecoration: "none" }}
+            >
               <Text
-                fontSize={{ base: 'lg', md: 'xl' }}
+                fontSize={{ base: "lg", md: "xl" }}
                 fontWeight="800"
                 lineHeight="1"
                 letterSpacing="-0.02em"
                 color="button.solid.bg"
               >
-                {t('logo')}
+                {t("logo")}
               </Text>
             </ChakraLink>
           </Box>
 
-          <HStack as="nav" flex="2" justify="center" gap={6} display={{ base: 'none', md: 'flex' }}>
+          <HStack
+            as="nav"
+            flex="2"
+            justify="center"
+            gap={6}
+            display={{ base: "none", md: "flex" }}
+          >
             {navItems.map((item) => (
               <ChakraLink
                 key={item.href}
@@ -64,7 +74,7 @@ export const Header: React.FC = () => {
                 fontWeight="600"
                 opacity={0.9}
                 className={styles.navLink}
-                _hover={{ opacity: 1, textDecoration: 'none' }}
+                _hover={{ opacity: 1, textDecoration: "none" }}
               >
                 {item.label}
               </ChakraLink>
@@ -73,20 +83,10 @@ export const Header: React.FC = () => {
 
           <HStack flex="1" justify="flex-end" gap={2}>
             <AuthButtons variant="header" />
-            <IconButton
-              aria-label={t('actions.toggleTheme')}
-              onClick={handleToggleTheme}
-              variant="plain"
-              size="sm"
-              minH={10}
-              minW={10}
-              borderRadius="full"
-            >
-              {isDark ? <Sun weight="bold" /> : <Moon weight="bold" />}
-            </IconButton>
+            <ThemeToggleButton aria-label={t("actions.toggleTheme")} ml={2} />
           </HStack>
         </Flex>
       </Container>
     </Box>
-  )
-}
+  );
+};
