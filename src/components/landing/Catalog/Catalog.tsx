@@ -135,7 +135,7 @@ export const Catalog: React.FC = () => {
               ))}
             </SimpleGrid>
           </Box>
-
+ 
           <Flex justify="center">
             <ChakraLink
               as={NextLink}
