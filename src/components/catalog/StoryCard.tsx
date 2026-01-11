@@ -9,7 +9,6 @@ import {
   Image,
   Stack,
   Text,
-  Tag,
   AspectRatio,
 } from "@chakra-ui/react";
 import type { StoryPreview } from "./types";
@@ -24,10 +23,12 @@ export function StoryCard({
   story,
   labels,
   onOpen,
+  size = "default",
 }: {
   story: StoryPreview;
   labels?: Labels;
   onOpen?: (id: string) => void;
+  size?: "compact" | "default" | "large";
 }) {
   const { title, subtitle, imageSrc, imageAlt, minutes, ageLabel } = story;
 
@@ -41,12 +42,25 @@ export function StoryCard({
       overflow="hidden"
       bg="chakra-body-bg"
       className={styles.card}
-      w={{ base: "64", md: "80" }}
-      h={{ base: "96", md: "96" }}
+      w="full"
       display="flex"
+      minH={
+        size === "compact"
+          ? { base: "64", md: "72" }
+          : size === "large"
+          ? { base: "96", md: "112" }
+          : { base: "80", md: "96" }
+      }
       flexDir="column"
     >
-      <Box p={4} flex="1">
+      <Box
+        p={4}
+        flex="1"
+        display="flex"
+        flexDir="column"
+        justifyContent="space-between"
+        overflow="hidden"
+      >
         <Box
           display="flex"
           justifyContent="space-between"
@@ -76,7 +90,7 @@ export function StoryCard({
           </Text>
         </Box>
 
-        <AspectRatio ratio={4 / 3}>
+        <AspectRatio ratio={4 / 3} flex="0 0 auto">
           {imageSrc ? (
             <Image
               src={imageSrc}
@@ -99,7 +113,13 @@ export function StoryCard({
           )}
         </AspectRatio>
 
-        <Stack spacing={2} mt={4}>
+        <Stack
+          spacing={2}
+          mt={4}
+          flex="1"
+          justify="space-between"
+          overflow="hidden"
+        >
           <Heading size="sm" lineHeight="short">
             {title}
           </Heading>

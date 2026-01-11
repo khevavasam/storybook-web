@@ -1,19 +1,19 @@
-'use client'
+"use client";
 
-import { Box, ChakraProvider } from '@chakra-ui/react'
-import type { ReactNode } from 'react'
-import { NextIntlClientProvider } from 'next-intl'
-import { ColorModeProvider } from '@/theme/color-mode'
-import { system } from '@/theme/system'
-import messages from '@/i18n/messages/en.json'
-import { DynamicBackground } from '@/components/background/DynamicBackground'
+import { Box, ChakraProvider } from "@chakra-ui/react";
+import type { ReactNode } from "react";
+import { NextIntlClientProvider } from "next-intl";
+import { ColorModeProvider } from "@/theme/color-mode";
+import { system } from "@/theme/system";
+import messages from "@/i18n/messages/en.json";
+import { DynamicBackground } from "@/components/background/DynamicBackground";
 
 export function Providers({
   children,
   initialColorMode,
 }: {
-  children: ReactNode
-  initialColorMode?: 'light' | 'dark'
+  children: ReactNode;
+  initialColorMode?: "light" | "dark";
 }) {
   return (
     <ChakraProvider value={system}>
@@ -25,15 +25,14 @@ export function Providers({
           // Missing keys are still visible via `getMessageFallback`.
           if (
             error &&
-            typeof error === 'object' &&
-            'code' in error &&
-            (error as { code?: unknown }).code === 'MISSING_MESSAGE'
+            typeof error === "object" &&
+            "code" in error &&
+            (error as { code?: unknown }).code === "MISSING_MESSAGE"
           ) {
-            return
+            return;
           }
 
-          // eslint-disable-next-line no-console
-          console.error(error)
+          console.error(error);
         }}
         getMessageFallback={({ namespace, key }) =>
           namespace ? `${namespace}.${key}` : key
@@ -47,5 +46,5 @@ export function Providers({
         </ColorModeProvider>
       </NextIntlClientProvider>
     </ChakraProvider>
-  )
+  );
 }
