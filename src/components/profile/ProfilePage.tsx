@@ -1,9 +1,9 @@
-'use client'
+"use client";
 
-import React from 'react'
-import type { Session } from '@supabase/supabase-js'
-import NextLink from 'next/link'
-import { useTranslations } from 'next-intl'
+import React from "react";
+import type { Session } from "@supabase/supabase-js";
+import NextLink from "next/link";
+import { useTranslations } from "next-intl";
 import {
   Avatar,
   Box,
@@ -16,45 +16,46 @@ import {
   Stack,
   Tag,
   Text,
-} from '@chakra-ui/react'
+} from "@chakra-ui/react";
 
-import { LogoutButton } from '@/components/auth'
-import { mockStories } from '@/components/landing/Catalog/mockStories'
-import { StoryCard } from '@/components/landing/Catalog/StoryCard'
-import styles from './ProfilePage.module.css'
+import { LogoutButton } from "@/components/auth";
+import ThemeToggleButton from "@/components/background/ThemeToggleButton";
+import { mockStories } from "@/components/landing/Catalog/mockStories";
+import { StoryCard } from "@/components/landing/Catalog/StoryCard";
+import styles from "./ProfilePage.module.css";
 
 type Props = {
-  session: Session | null
-}
+  session: Session | null;
+};
 
 const actionBtnProps = {
-  size: 'sm' as const,
+  size: "sm" as const,
   px: 6,
-  borderRadius: 'full' as const,
-}
+  borderRadius: "full" as const,
+};
 
 function prettyProvider(provider?: string) {
-  const p = (provider ?? 'google').trim().toLowerCase()
-  if (!p || p === 'google') return 'Google'
-  return p.charAt(0).toUpperCase() + p.slice(1)
+  const p = (provider ?? "google").trim().toLowerCase();
+  if (!p || p === "google") return "Google";
+  return p.charAt(0).toUpperCase() + p.slice(1);
 }
 
 export function ProfilePage({ session }: Props) {
-  const t = useTranslations('Profile')
-  const tLibrary = useTranslations('Profile.Library')
-  const user = session?.user
+  const t = useTranslations("Profile");
+  const tLibrary = useTranslations("Profile.Library");
+  const user = session?.user;
 
   const name =
     user?.user_metadata?.full_name ||
     user?.user_metadata?.name ||
-    t('fallback.name')
+    t("fallback.name");
 
-  const email = user?.email || t('fallback.email')
+  const email = user?.email || t("fallback.email");
   const avatarUrl =
-    user?.user_metadata?.avatar_url || user?.user_metadata?.picture
-  const provider = prettyProvider(user?.app_metadata?.provider)
+    user?.user_metadata?.avatar_url || user?.user_metadata?.picture;
+  const provider = prettyProvider(user?.app_metadata?.provider);
 
-  const libraryPreviewStories = mockStories.slice(0, 4)
+  const libraryPreviewStories = mockStories.slice(0, 4);
 
   return (
     <Box
@@ -73,7 +74,7 @@ export function ProfilePage({ session }: Props) {
           >
             <Card.Body p={{ base: 4, md: 6 }}>
               <Grid
-                templateColumns={{ base: '1fr', md: '1fr auto' }}
+                templateColumns={{ base: "1fr", md: "1fr auto" }}
                 gap={4}
                 alignItems="center"
               >
@@ -96,7 +97,7 @@ export function ProfilePage({ session }: Props) {
 
                     <HStack gap={2}>
                       <Text fontSize="sm" opacity={0.7}>
-                        {t('meta.providerLabel')}
+                        {t("meta.providerLabel")}
                       </Text>
 
                       <Tag.Root
@@ -113,30 +114,33 @@ export function ProfilePage({ session }: Props) {
                   </Stack>
                 </HStack>
 
-                <LogoutButton variant="solid" {...actionBtnProps}>
-                  {t('actions.logout')}
-                </LogoutButton>
+                <HStack gap={2} align="center">
+                  <LogoutButton variant="solid" {...actionBtnProps}>
+                    {t("actions.logout")}
+                  </LogoutButton>
+                  <ThemeToggleButton aria-label={t("actions.toggleTheme")} />
+                </HStack>
               </Grid>
             </Card.Body>
           </Card.Root>
 
           <Grid
             w="full"
-            templateColumns={{ base: '1fr', lg: '1.35fr 0.9fr' }}
+            templateColumns={{ base: "1fr", lg: "1.35fr 0.9fr" }}
             gap={{ base: 4, md: 6 }}
-            alignItems={{ base: 'start', lg: 'stretch' }}
+            alignItems={{ base: "start", lg: "stretch" }}
           >
             <Card.Root variant="outline" className={styles.card}>
-              <Card.Body p={{ base: 4, md: 6 }} h={{ lg: 'full' }}>
+              <Card.Body p={{ base: 4, md: 6 }} h={{ lg: "full" }}>
                 <Stack
                   gap={4}
-                  h={{ lg: 'full' }}
-                  justify={{ lg: 'space-between' }}
+                  h={{ lg: "full" }}
+                  justify={{ lg: "space-between" }}
                 >
                   <Stack gap={2}>
-                    <Heading size="md">{tLibrary('title')}</Heading>
+                    <Heading size="md">{tLibrary("title")}</Heading>
                     <Text fontSize="sm" opacity={0.85}>
-                      {tLibrary('subtitle')}
+                      {tLibrary("subtitle")}
                     </Text>
                   </Stack>
 
@@ -149,15 +153,15 @@ export function ProfilePage({ session }: Props) {
                       pt={2}
                       px={1}
                       scrollSnapType="x mandatory"
-                      scrollPaddingInline={{ base: '0.5rem', md: '0.75rem' }}
+                      scrollPaddingInline={{ base: "0.5rem", md: "0.75rem" }}
                       className={styles.scrollX}
                     >
                       <Flex gap={6} w="max-content">
                         {libraryPreviewStories.map((story) => (
                           <Box
                             key={story.id}
-                            w={{ base: '16rem', md: '20rem' }}
-                            flex={{ base: '0 0 16rem', md: '0 0 20rem' }}
+                            w={{ base: "16rem", md: "20rem" }}
+                            flex={{ base: "0 0 16rem", md: "0 0 20rem" }}
                             scrollSnapAlign="start"
                           >
                             <StoryCard story={story} />
@@ -167,20 +171,20 @@ export function ProfilePage({ session }: Props) {
                     </Box>
                   ) : (
                     <Text fontSize="sm" opacity={0.85}>
-                      {tLibrary('empty')}
+                      {tLibrary("empty")}
                     </Text>
                   )}
 
                   <Flex gap={3} align="center" justify="flex-start" wrap="wrap">
                     <Button asChild variant="solid" {...actionBtnProps}>
                       <NextLink href="/catalog">
-                        {tLibrary('actions.startReading')}
+                        {tLibrary("actions.startReading")}
                       </NextLink>
                     </Button>
 
                     <Button asChild variant="outline" {...actionBtnProps}>
                       <NextLink href="/catalog">
-                        {tLibrary('actions.viewAll')}
+                        {tLibrary("actions.viewAll")}
                       </NextLink>
                     </Button>
                   </Flex>
@@ -190,33 +194,33 @@ export function ProfilePage({ session }: Props) {
 
             <Grid
               w="full"
-              templateRows={{ base: 'auto', lg: '1fr 1fr' }}
+              templateRows={{ base: "auto", lg: "1fr 1fr" }}
               gap={{ base: 4, md: 6 }}
             >
               <Card.Root variant="outline" className={styles.card}>
-                <Card.Body p={{ base: 4, md: 6 }} h={{ lg: 'full' }}>
+                <Card.Body p={{ base: 4, md: 6 }} h={{ lg: "full" }}>
                   <Stack gap={2}>
-                    <Heading size="sm">{t('sections.account.title')}</Heading>
+                    <Heading size="sm">{t("sections.account.title")}</Heading>
                     <Text fontSize="sm" opacity={0.85}>
-                      {t('common.comingSoon')}
+                      {t("common.comingSoon")}
                     </Text>
                   </Stack>
                 </Card.Body>
               </Card.Root>
 
               <Card.Root variant="outline" className={styles.card}>
-                <Card.Body p={{ base: 4, md: 6 }} h={{ lg: 'full' }}>
+                <Card.Body p={{ base: 4, md: 6 }} h={{ lg: "full" }}>
                   <Stack
                     gap={4}
-                    h={{ lg: 'full' }}
-                    justify={{ lg: 'space-between' }}
+                    h={{ lg: "full" }}
+                    justify={{ lg: "space-between" }}
                   >
                     <Stack gap={2}>
                       <Heading size="sm">
-                        {t('sections.subscription.title')}
+                        {t("sections.subscription.title")}
                       </Heading>
                       <Text fontSize="sm" opacity={0.85}>
-                        {t('common.comingSoon')}
+                        {t("common.comingSoon")}
                       </Text>
                     </Stack>
 
@@ -225,7 +229,7 @@ export function ProfilePage({ session }: Props) {
                       alignSelf="flex-start"
                       {...actionBtnProps}
                     >
-                      {t('actions.upgrade')}
+                      {t("actions.upgrade")}
                     </Button>
                   </Stack>
                 </Card.Body>
@@ -235,5 +239,5 @@ export function ProfilePage({ session }: Props) {
         </Stack>
       </Box>
     </Box>
-  )
+  );
 }
